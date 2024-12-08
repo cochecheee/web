@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.project.entity.Customer;
 import com.example.project.entity.Manager;
+import com.example.project.entity.Order;
 import com.example.project.entity.Shipper;
 import com.example.project.service.impl.ManagerServiceImpl;
+import com.example.project.service.impl.OrderServiceImpl;
 
 @Controller
 public class ManagerController {
 	@Autowired
 	ManagerServiceImpl managerService;
+	@Autowired
+	OrderServiceImpl orderService;
 	
 	@GetMapping("/manager/{id}")
 	public String managerHome(@PathVariable("id") String id, ModelMap model) {
@@ -32,8 +36,14 @@ public class ManagerController {
 	    // Truền post office
 	    model.addAttribute("customers", customers);
 	    
+	    List<Order> orders = orderService.findAll();
+	    model.addAttribute("orders", orders);
+	    
+	    
 	    List<Shipper> shippers = manager.getShippers(); 
 	    model.addAttribute("shippers", shippers);
+	    
+	    
 	    
 	    
 	    return "views/manager/manager-home";

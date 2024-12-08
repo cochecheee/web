@@ -29,6 +29,7 @@ public class LoginController {
 			HttpServletRequest request) {
 		// Tìm tài khoản dựa trên username (hoặc email nếu cần)
 		Manager manager = managerService.findByUsername(username);
+		
 		System.out.println(username + " " + password); // In ra để kiểm tra
 
 		if (manager != null && manager.getPassword().equals(password)) {

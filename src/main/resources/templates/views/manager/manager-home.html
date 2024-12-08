@@ -74,6 +74,40 @@
         </table>
        
     </div>
+    
+    <!-- Shipper -->
+    <div class="container1">
+         <h1>Order List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ship Fee</th>
+                    <th>COD Fee</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Order Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.IDOrder}"></td>
+                    <td th:text="${order.shipFee}"></td>
+                    <td th:text="${order.codFee}"></td>
+                    <td th:text="${order.width}"></td>
+                    <td th:text="${order.height}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td>
+                        <a>Add</a>
+                        <a>Edit</a>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
 
 	<!-- JS -->
      <script th:src="@{/js/managerHeader.js}"></script>

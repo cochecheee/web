@@ -1,5 +1,6 @@
 package com.example.project.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public Optional<Order> findById(String id) {
 		return orderRepository.findById(id);
+	}
+
+	@Override
+	public List<Order> findAll() {
+		return orderRepository.findAll();
 	}
 
 	
