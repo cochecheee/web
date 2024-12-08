@@ -99,8 +99,8 @@
                     <td th:text="${order.height}"></td>
                     <td th:text="${order.orderDate}"></td>
                     <td>
-                        <a>Add</a>
-                        <a>Edit</a>
+                    	
+                        <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder})}">Edit</a>
                         <a>Delete</a>
                     </td>
                 </tr>

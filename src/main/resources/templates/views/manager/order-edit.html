@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/managerHeader.css}">
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <title>ORDER MANAGEMENT SYSTEM</title>
+</head>
+<body>
+	<header th:replace="~{views/manager/fragments/header::header}"></header>
+	<h1>Edit Order</h1>
+    <form th:action="@{/manager/order/edit}" th:object="${order}" method="post">
+        <input type="hidden" name="idorder" />
+
+        <label for="shipFee">Shipping Fee:</label>
+        <input type="number" name="shipFee" id="shipFee" required /><br />
+
+        <label for="codFee">COD Fee:</label>
+        <input type="number" name="codFee" id="codFee" required /><br />
+
+        <label for="source">Source:</label>
+        <input type="text" name="source" id="source" required /><br />
+
+        <label for="sourceCity">Source City:</label>
+        <input type="text" id="sourceCity" name="sourceCity" required /><br />
+<!-- 
+        <label for="dest">Destination:</label>
+        <input type="text" th:field="*{dest}" id="dest" required /><br />
+
+        <label for="destCity">Destination City:</label>
+        <input type="text" th:field="*{destCity}" id="destCity" required /><br />
+
+        <label for="width">Width:</label>
+        <input type="number" th:field="*{width}" id="width" required /><br />
+
+        <label for="height">Height:</label>
+        <input type="number" th:field="*{height}" id="height" required /><br />
+
+        <label for="weigth">Weight:</label>
+        <input type="number" th:field="*{weigth}" id="weigth" required /><br />
+
+        <label for="orderDate">Order Date:</label>
+        <input type="date" th:field="*{orderDate}" id="orderDate" required /><br />
+
+        <label for="status">Status:</label>
+        <input type="number" th:field="*{status}" id="status" required /><br /> -->
+
+        <!-- Các trường ManyToOne -->
+
+     <!--    <label for="postOffice">Post Office:</label>
+        <select name="postOffice" id="postOffice">
+            <option th:each="p : ${postOffices}" th:value="${p.id}" th:text="${p.name}"></option>
+        </select><br /> -->
+
+        <button type="submit">Update Order</button>
+    </form>
+</body>

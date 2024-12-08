@@ -23,6 +23,8 @@ public class PostOffice implements Serializable  {
 	@Column(columnDefinition = "nvarchar(100)")
 	public String namePost;
 	
+	public String postCity;
+	
 	// một post có nhiều shipper
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	@JsonManagedReference
