@@ -74,39 +74,62 @@
        
     </div>
     
-    <!-- Shipper -->
+    <!-- Order -->
     <div class="container1">
-         <h1>Order List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Ship Fee</th>
-                    <th>COD Fee</th>
-                    <th>Width</th>
-                    <th>Height</th>
-                    <th>Order Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="order : ${orders}">
-                    <td th:text="${order.IDOrder}"></td>
-                    <td th:text="${order.shipFee}"></td>
-                    <td th:text="${order.codFee}"></td>
-                    <td th:text="${order.width}"></td>
-                    <td th:text="${order.height}"></td>
-                    <td th:text="${order.orderDate}"></td>
-                    <td>
-                    	
-                        <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       
-    </div>
+    <h1>Order List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ship Fee</th>
+                <th>COD Fee</th>
+                <th>Source</th>
+                <th>Source City</th>
+                <th>Destination</th>
+                <th>Destination City</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Goods</th>
+                <th>Transport</th>
+                <th>User</th>
+                <th>Voucher</th>
+                <th>Shipper</th>
+                <th>Post Office</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.IDOrder}"></td>
+                <td th:text="${order.shipFee}"></td>
+                <td th:text="${order.codFee}"></td>
+                <td th:text="${order.source}"></td>
+                <td th:text="${order.sourceCity}"></td>
+                <td th:text="${order.dest}"></td>
+                <td th:text="${order.destCity}"></td>
+                <td th:text="${order.width}"></td>
+                <td th:text="${order.height}"></td>
+                <td th:text="${order.weigth}"></td>
+                <td th:text="${order.orderDate}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.good?.GoodsType}"></td>
+                <td th:text="${order.transport?.TransportType}"></td>
+                <td th:text="${order.user?.name}"></td>
+                <td th:text="${order.voucher?.IDVoucher}"></td>
+                <td th:text="${order.shipper?.name}"></td>
+                <td th:text="${order.postOffice?.namePost}"></td>
+                <td>
+                    <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
+                    <a th:href="@{/manager/order/delete/{id}(id=${order.IDOrder})}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 	<!-- JS -->
      <script th:src="@{/js/managerHeader.js}"></script>

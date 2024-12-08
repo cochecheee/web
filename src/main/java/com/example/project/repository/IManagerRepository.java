@@ -13,5 +13,7 @@ public interface IManagerRepository extends JpaRepository<Manager, String>{
 	
 	@Query("SELECT m FROM Manager m WHERE m.username = :username")
     Manager findByUsername(@Param("username") String username);
+	
+	
 
 }

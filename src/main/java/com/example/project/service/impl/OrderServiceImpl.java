@@ -33,6 +33,10 @@ public class OrderServiceImpl implements IOrderService{
 		return orderRepository.save(entity);
 	}
 
+	public List<Order> filterOrderByPostID(String postID) {
+		return orderRepository.filterOrderByPostID(postID);
+	}
+
 	
 	
 }

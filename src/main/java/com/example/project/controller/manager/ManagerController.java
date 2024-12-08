@@ -29,23 +29,22 @@ public class ManagerController {
 	    
 	    // Lấy danh sách Customer
 	    List<Customer> customers = manager.getUsers();
-	    
 	    // Truyền thông tin vào model
 	    model.addAttribute("manager", manager);
-	    
-	    // Truền post office
 	    model.addAttribute("customers", customers);
 	    model.addAttribute("managerID",id);
 	    
-	    List<Order> orders = orderService.findAll();
+	    //id post
+	    String postid = manager.getPost().getIDPost();
+	    System.out.println(postid);
+//	    
+	    List<Order> orders = orderService.filterOrderByPostID(postid);
+	    //System.out.println(orders);
 	    model.addAttribute("orders", orders);
 	    
 	    
 	    List<Shipper> shippers = manager.getShippers(); 
 	    model.addAttribute("shippers", shippers);
-	    
-	    
-	    
 	    
 	    return "views/manager/manager-home";
 	}
