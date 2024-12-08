@@ -14,4 +14,7 @@ public interface IPostOfficeRepository extends JpaRepository<PostOffice, String>
 	
 	@Query("SELECT p FROM PostOffice p WHERE p.postCity = :cityName")
     List<PostOffice> findPostOfficeByCity(@Param("cityName") String cityName);
+	
+	@Query("SELECT p FROM PostOffice p WHERE p.namePost = :postName")
+	PostOffice findPostOfficeByName(@Param("postName") String postName);
 }

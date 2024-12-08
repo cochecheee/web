@@ -12,47 +12,49 @@
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
 	<h1>Edit Order</h1>
     <form th:action="@{/manager/order/edit}" th:object="${order}" method="post">
-        <input type="hidden" name="idorder" />
+    	 <!-- Truyền Manager ID -->
+    	<input type="hidden" name="managerID" th:value="${managerID}" />
+        <input type="hidden" th:field="*{IDOrder}" th:text="${order.IDOrder}" readonly/>
 
         <label for="shipFee">Shipping Fee:</label>
-        <input type="number" name="shipFee" id="shipFee" required /><br />
+        <input type="number" name="shipFee" id="shipFee" th:field="*{shipFee}" th:text="${order.shipFee}" required /><br />
 
         <label for="codFee">COD Fee:</label>
-        <input type="number" name="codFee" id="codFee" required /><br />
+        <input type="number" name="codFee" id="codFee" th:field="*{codFee}" th:text="${order.codFee}" required /><br />
 
         <label for="source">Source:</label>
-        <input type="text" name="source" id="source" required /><br />
+        <input type="text" name="source" id="source" th:field="*{source}" th:text="${order.source}"required /><br />
 
         <label for="sourceCity">Source City:</label>
-        <input type="text" id="sourceCity" name="sourceCity" required /><br />
-<!-- 
+        <input type="text" id="sourceCity" th:field="*{sourceCity}" th:text="${order.sourceCity}"required /><br />
+
         <label for="dest">Destination:</label>
-        <input type="text" th:field="*{dest}" id="dest" required /><br />
+        <input type="text" th:field="*{dest}" id="dest" th:text="${order.dest}" required /><br />
 
         <label for="destCity">Destination City:</label>
-        <input type="text" th:field="*{destCity}" id="destCity" required /><br />
+        <input type="text" th:field="*{destCity}" id="destCity" th:text="${order.destCity}" required /><br />
 
         <label for="width">Width:</label>
-        <input type="number" th:field="*{width}" id="width" required /><br />
+        <input type="number" th:field="*{width}" id="width" th:text="${order.width}" required /><br />
 
         <label for="height">Height:</label>
-        <input type="number" th:field="*{height}" id="height" required /><br />
+        <input type="number" th:field="*{height}" id="height" th:text="${order.height}"required /><br />
 
         <label for="weigth">Weight:</label>
-        <input type="number" th:field="*{weigth}" id="weigth" required /><br />
+        <input type="number" th:field="*{weigth}" id="weigth" th:text="${order.weigth}" required /><br />
 
         <label for="orderDate">Order Date:</label>
-        <input type="date" th:field="*{orderDate}" id="orderDate" required /><br />
+        <input type="date" th:field="*{orderDate}" id="orderDate" th:text="${order.orderDate}" required /><br />
 
         <label for="status">Status:</label>
-        <input type="number" th:field="*{status}" id="status" required /><br /> -->
+        <input type="number" th:field="*{status}" id="status" th:text="${order.status}" required /><br />
 
         <!-- Các trường ManyToOne -->
 
-     <!--    <label for="postOffice">Post Office:</label>
+        <label for="postOffice">Post Office:</label>
         <select name="postOffice" id="postOffice">
-            <option th:each="p : ${postOffices}" th:value="${p.id}" th:text="${p.name}"></option>
-        </select><br /> -->
+            <option th:each="p : ${posts}" th:value="${p.IDPost}" th:text="${p.namePost}"></option>
+        </select><br />
 
         <button type="submit">Update Order</button>
     </form>

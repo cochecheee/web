@@ -29,6 +29,10 @@ public class OrderServiceImpl implements IOrderService{
 		return orderRepository.findAll();
 	}
 
+	public <S extends Order> S save(S entity) {
+		return orderRepository.save(entity);
+	}
+
 	
 	
 }

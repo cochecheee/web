@@ -10,7 +10,6 @@
 </head>
 <body>
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
-    
     <!-- Body  -->
     <div class="container1">
          <h1>Customer List</h1>
@@ -100,7 +99,7 @@
                     <td th:text="${order.orderDate}"></td>
                     <td>
                     	
-                        <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder})}">Edit</a>
+                        <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
                         <a>Delete</a>
                     </td>
                 </tr>

@@ -35,6 +35,7 @@ public class ManagerController {
 	    
 	    // Truền post office
 	    model.addAttribute("customers", customers);
+	    model.addAttribute("managerID",id);
 	    
 	    List<Order> orders = orderService.findAll();
 	    model.addAttribute("orders", orders);
