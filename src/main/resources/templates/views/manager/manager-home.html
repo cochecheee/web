@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/managerHeader.css}">
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <title>ORDER MANAGEMENT SYSTEM</title>
+</head>
+<body>
+	<header th:replace="~{views/manager/fragments/header::header}"></header>
+    
+    <!-- Body  -->
+    <div class="container1">
+         <h1>Customer List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>CCCD</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="customer : ${customers}">
+                    <td th:text="${customer.IDUser}"></td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.cccd}"></td>
+                    <td th:text="${customer.phone}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td>
+                        <a>Add</a>
+                        <a>Edit</a>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+    <!-- Shipper -->
+    <div class="container1">
+         <h1>Shipper List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>CCCD</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="shipper : ${shippers}">
+                    <td th:text="${shipper.IDShipper}"></td>
+                    <td th:text="${shipper.name}"></td>
+                    <td th:text="${shipper.cccd}"></td>
+                    <td th:text="${shipper.phone}"></td>
+                    <td th:text="${shipper.address}"></td>
+                    <td>
+                        <a>Add</a>
+                        <a>Edit</a>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
+
+	<!-- JS -->
+     <script th:src="@{/js/managerHeader.js}"></script>
+</body>
+</html>
