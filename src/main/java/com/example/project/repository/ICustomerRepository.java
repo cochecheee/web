@@ -8,6 +8,6 @@ import com.example.project.entity.Customer;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer	, String>{
-	@Query("SELECT a FROM Account a WHERE a.username = :username")
+	@Query("SELECT a FROM Customer a WHERE a.username = :username")
 	Customer findByUserName(String username);
 }

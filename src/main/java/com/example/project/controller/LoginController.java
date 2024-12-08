@@ -50,7 +50,7 @@ public class LoginController {
 	                           @RequestParam("password") String password,
 	                           HttpServletRequest request) {
 
-	    // Xử lý đăng nhập mới
+	    // Tạo đối tượng Account để kiểm tra thông tin
 	    Account acc = new Account();
 	    acc.setUsername(username);
 	    acc.setPassword(password);
@@ -62,20 +62,23 @@ public class LoginController {
 	    // Khai báo session
 	    HttpSession session = request.getSession(); 
 
+	    // Kiểm tra tài khoản của Manager
 	    if (manager != null && manager.getPassword().equals(password)) {
 	        session.setAttribute("account", acc);
 	        session.setAttribute("role", "manager");
 	        return "redirect:/manager/" + manager.getIDManager();
-	    } else if (customer != null && customer.getPassword().equals(password)) {
+	    } 
+	    // Kiểm tra tài khoản của Customer
+	    else if (customer != null && customer.getPassword().equals(password)) {
 	        session.setAttribute("account", acc);
 	        session.setAttribute("role", "customer");
 	        return "redirect:/customer/" + customer.getIDUser();
-	    } else {
+	    } 
+	    else {
 	        // Xóa session nếu thông tin không hợp lệ
 	        session.invalidate();
 	        return "redirect:/login?error=true";
 	    }
 	}
-
 
 }
