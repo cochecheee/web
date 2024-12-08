@@ -55,10 +55,7 @@ public class ManagerServiceImpl implements IManagerService{
 
 	@Override
 	public Manager findByUsername(String username) {
-	    String jpql = "SELECT m FROM Manager m LEFT JOIN FETCH m.vouchers WHERE m.username = :username";
-	    return entityManager.createQuery(jpql, Manager.class)
-	                        .setParameter("username", username)
-	                        .getSingleResult();
+		return managerRepository.findByUsername(username);
 	}
 	
 	

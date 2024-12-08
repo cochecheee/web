@@ -5,13 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.project.entity.Manager;
+import com.example.project.entity.Account;
 
 @Repository
-
-public interface IManagerRepository extends JpaRepository<Manager, String>{
+public interface IAccountRepository extends JpaRepository<Account, Integer>{
+	 @Query("SELECT a FROM Account a WHERE a.username = :username")
+	 Account findAccountByUserName(@Param("username") String username);
 	
-	@Query("SELECT m FROM Manager m WHERE m.username = :username")
-    Manager findByUsername(@Param("username") String username);
-
 }

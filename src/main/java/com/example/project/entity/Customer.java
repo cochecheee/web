@@ -48,6 +48,7 @@ public class Customer implements Serializable{/**
 	@Column(columnDefinition = "nvarchar(300)")
 	public String picture;
 	
+	private String username;
 	@Column(columnDefinition = "nvarchar(50) not null")
 	public String password;
 	
