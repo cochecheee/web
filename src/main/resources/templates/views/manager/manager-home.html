@@ -16,6 +16,7 @@
         <table>
             <thead>
                 <tr>
+                	<th>ID Manager</th>
                     <th>ID User</th>
                     <th>Picture</th>
                     <th>Name</th>
@@ -25,21 +26,24 @@
                     <th>Gender</th>
                     <th>Birth</th>
                     <th>City</th>
-                    
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="customer : ${customers}">
+                	<td th:text="${customer.manager?.IDManager}"></td>
                     <td th:text="${customer.IDUser}"></td>
                     <td>
 					    <img height="150" width="200"
-					         th:if="${customer.picture.startsWith('http')}"
+					         th:if="${customer.picture != null and customer.picture.startsWith('http')}"
 					         th:src="${customer.picture}"  />
 					
 					    <img height="150" width="200"
-					         th:if="${!customer.picture.startsWith('http')}"
+					         th:if="${customer.picture != null and !customer.picture?.startsWith('http')}"
 					         th:src="@{/image/{fname}(fname=${customer.picture})}"/>
+					    <img height="150" width="200"
+					         th:if="${customer.picture == null}"
+					         th:src="@{/image/{fname}(fname='avatar.jpg')}"/>
 					</td>
                     <td th:text="${customer.name}"></td>
                     <td th:text="${customer.cccd}"></td>
@@ -50,7 +54,7 @@
                     <td th:text="${customer.city}"></td>
                     <td>
                         <a>Add</a>
-                        <a>Edit</a>
+                        <a th:href="@{/manager/customer/edit/{id}(id=${customer.IDUser})}">Edit</a>
                         <a>Delete</a>
                     </td>
                 </tr>
