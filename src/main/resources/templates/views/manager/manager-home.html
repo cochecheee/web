@@ -10,14 +10,16 @@
 </head>
 <body>
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
-    <!-- Body  -->
+    <a th:href="@{/manager/customers}">View Customer</a>
+    
+    <!-- Shipper -->
     <div class="container1">
-         <h1>Customer List</h1>
-        <table>
+         <h1>Shipper List</h1>
+       <table>
             <thead>
                 <tr>
                 	<th>ID Manager</th>
-                    <th>ID User</th>
+                    <th>ID Shipper</th>
                     <th>Picture</th>
                     <th>Name</th>
                     <th>CCCD</th>
@@ -55,38 +57,6 @@
                     <td>
                         <a>Add</a>
                         <a th:href="@{/manager/customer/edit/{id}(id=${customer.IDUser})}">Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-    </div>
-    
-    <!-- Shipper -->
-    <div class="container1">
-         <h1>Shipper List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>CCCD</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="shipper : ${shippers}">
-                    <td th:text="${shipper.IDShipper}"></td>
-                    <td th:text="${shipper.name}"></td>
-                    <td th:text="${shipper.cccd}"></td>
-                    <td th:text="${shipper.phone}"></td>
-                    <td th:text="${shipper.address}"></td>
-                    <td>
-                        <a>Add</a>
-                        <a>Edit</a>
                         <a>Delete</a>
                     </td>
                 </tr>

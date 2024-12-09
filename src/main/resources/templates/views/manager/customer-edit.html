@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <form th:action="@{/manager/customer/edit/{id}(id=${customer.IDUser},managerID=${managerID})}" method="post" enctype="multipart/form-data">
-    
-    
+
     <!-- Customer ID: Được điền tự động từ đối tượng customer -->
     <label for="id">Customer ID: </label><br> 
     <input type="text" id="id" name="IDUser" th:value="${customer.IDUser}" readonly><br> 
     
     <!-- Customer Name: Sử dụng th:value để gán giá trị từ đối tượng customer -->
     <label for="fname">Customer Name: </label><br> 
-    <input type="text" id="fname" name="name" th:value="${customer.name}"><br> 
+    <input type="text" id="fname" name="name" th:value="${customer.name != null ? customer.name : ''}"><br> 
     
     <!-- CCCD: Chỉnh sửa thông tin -->
     <label for="cccd">CCCD: </label><br> 
-    <input type="text" id="cccd" name="cccd" th:value="${customer.cccd}"><br> 
+    <input type="text" id="cccd" name="cccd" th:value="${customer.cccd != null ? customer.cccd : ''}"><br> 
     
     <!-- Phone: Chỉnh sửa thông tin -->
     <label for="phone">Phone: </label><br> 
-    <input type="text" id="phone" name="phone" th:value="${customer.phone}"><br> 
+    <input type="text" id="phone" name="phone" th:value="${customer.phone != null ? customer.phone : ''}"><br> 
     
     <!-- Address: Chỉnh sửa thông tin -->
     <label for="address">Address: </label><br> 
-    <input type="text" id="address" name="address" th:value="${customer.address}"><br> 
+    <input type="text" id="address" name="address" th:value="${customer.address != null ? customer.address : ''}"><br> 
     
     <!-- City: Chỉnh sửa thông tin -->
     <label for="city">City: </label><br> 
-    <input type="text" id="city" name="city" th:value="${customer.city}"><br> 
+    <input type="text" id="city" name="city" th:value="${customer.city != null ? customer.city : ''}"><br> 
     
     <!-- Gender: Radio buttons cho giới tính -->
     <label for="gender">Gender:</label><br>
-    <input type="radio" id="genderMale" name="gender" th:value="true" th:checked="${customer.gender == true}">
+    <input type="radio" id="genderMale" name="gender" th:value="true" th:checked="${customer.gender != null && customer.gender == true}">
     <label for="genderFemale">Female</label><br>
     
-    <input type="radio" id="genderFemale" name="gender" th:value="false" th:checked="${customer.gender == false}">
+    <input type="radio" id="genderFemale" name="gender" th:value="false" th:checked="${customer.gender != null && customer.gender == false}">
     <label for="genderMale">Male</label><br>
     
-    <!-- Birth: Ngày sinh -->
+   <!-- Birth: Ngày sinh -->
     <label for="birth">Birth Date: </label><br> 
-    <input type="text" id="birth" name="birth" th:value="${customer.birth}"><br> 
+    <input type="text" id="birth" name="birth" th:value="${customer.birth != null ? customer.birth : null}"><br>  
     
     <label for="username">Username: </label><br> 
-    <input name="username" th:value="${customer.username}"><br> 
+    <input name="username" th:value="${customer.username != null ? customer.username : ''}"><br> 
     
     <label for="birth">Password: </label><br> 
-    <input name="password" th:value="${customer.password}"><br> 
+    <input name="password" th:value="${customer.password != null ? customer.password : ''}"><br> 
 
     <!-- Picture (Link image): -->
     <label for="images">Picture Link: </label><br>
-    <input type="text" id="images" name="picture" th:value="${customer.picture}"><br>
+    <input type="text" id="images" name="picture" th:value="${customer.picture != null ? customer.picture : ''}"><br>
 
     <!-- Upload new image (if any) -->
     <label for="images1">Upload New Image:</label><br> 
-    <input type="file" id="images1" name="images1" th:value="${customer.picture}"><br> 
-    
+    <input type="file" id="images1" name="images1"><br> 
 
     <!-- Submit button -->
     <input type="submit" value="Update">
 </form>
+</html>

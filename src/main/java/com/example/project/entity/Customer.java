@@ -37,7 +37,7 @@ public class Customer implements Serializable{/**
 	public String phone;
 	public String name;
 	public Boolean gender;
-	public Date birth;
+	public String birth;
 	
 	@Column(columnDefinition = "nvarchar(100)")
 	public String address;

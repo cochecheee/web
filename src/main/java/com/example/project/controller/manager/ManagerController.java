@@ -60,6 +60,15 @@ public class ManagerController {
 
 		return "views/manager/manager-home";
 	}
+	
+	@GetMapping("/manager/customers")
+	public String customerDetails(ModelMap model) {
+		List<Customer> customers = customerService.findAll();
+		
+		model.addAttribute("customers", customers);
+		
+		return "views/manager/customer-details";
+	}
 
 	@GetMapping("/manager/customer/edit/{id}")
 	public String editCustomer(@PathVariable("id") String customerID, ModelMap model) {
