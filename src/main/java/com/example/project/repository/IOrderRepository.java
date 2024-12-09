@@ -14,4 +14,5 @@ import com.example.project.entity.Order;
 public interface IOrderRepository extends JpaRepository<Order, String>{
 	 @Query("SELECT o FROM Order o WHERE o.postOffice.IDPost = :postID")
 	 List<Order> filterOrderByPostID(@Param("postID") String postID);
+	 
 }

@@ -130,5 +130,31 @@ public class ManagerController {
 
 	    return "redirect:/manager/" + managerID;
 	}
+	
+	//shipper
+	@GetMapping("/manager/shippers")
+	public String shipperDetails(ModelMap model, @RequestParam("managerID") String managerID) {
+		Manager manager = managerService.findById(managerID).get();
+		
+		List<Shipper> shippers = manager.getShippers();
+		if(shippers == null) {
+			System.out.println(managerID);
+			System.out.println("Shipper rỗng");
+		}
+		
+		model.addAttribute("shippers", shippers);
+		
+		return "views/manager/shipper-details";
+	}
+	
+	@GetMapping("manager/shipper/delete/{id}")
+	public String deleteShipper(ModelMap model, @PathVariable("id") String shipperID) {
+		// tim shipper
+		
+		// lấy thong tin manager
+		
+		// điều hướng về
+		return "redirect:/manager/shippers?managerID=";
+	}
 
 }

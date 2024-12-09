@@ -23,6 +23,4 @@ public class AccountServiceImpl implements IAccountService{
 	public <S extends Account> S save(S entity) {
 		return accountRepository.save(entity);
 	}
-	
-	
 }

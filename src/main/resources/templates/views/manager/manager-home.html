@@ -6,122 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/managerHeader.css}">
     <link rel="stylesheet" th:href="@{/css/manager.css}">
-    <title>ORDER MANAGEMENT SYSTEM</title>
+    <title>ORDER Details</title>
+    <style type="text/css">
+    	/* Style for button links */
+		.button-container .styled-button {
+		    display: inline-block;
+		    margin: 10px;
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    text-align: center;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    color: #fff;
+		    background-color: #007bff;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		
+		.button-container .styled-button:hover {
+		    background-color: #0056b3;
+		    transform: scale(1.05);
+		}
+		
+		.button-container .styled-button:active {
+		    background-color: #004085;
+		    transform: scale(0.95);
+		}
+		
+		/* Centering the buttons */
+		.button-container {
+		    display: flex;
+		    justify-content: center;
+		    flex-wrap: wrap;
+		    margin: 20px 0;
+		}
+    
+    </style>
 </head>
 <body>
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
-    <a th:href="@{/manager/customers}">View Customer</a>
+	
+	<div class="button-container">
+	    <a th:href="@{/manager/customers}" class="styled-button">View Customer</a><br />
+	    <a th:href="@{/manager/shippers(managerID=${managerID})}" class="styled-button">Manage Shipper</a><br />
+	    <a th:href="@{/manager/orders(managerID=${managerID})}" class="styled-button">Phân đơn hàng cho shipper</a><br />
+	</div>
     
-    <!-- Shipper -->
-    <div class="container1">
-         <h1>Shipper List</h1>
-       <table>
-            <thead>
-                <tr>
-                	<th>ID Manager</th>
-                    <th>ID Shipper</th>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>CCCD</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Gender</th>
-                    <th>Birth</th>
-                    <th>City</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="customer : ${customers}">
-                	<td th:text="${customer.manager?.IDManager}"></td>
-                    <td th:text="${customer.IDUser}"></td>
-                    <td>
-					    <img height="150" width="200"
-					         th:if="${customer.picture != null and customer.picture.startsWith('http')}"
-					         th:src="${customer.picture}"  />
-					
-					    <img height="150" width="200"
-					         th:if="${customer.picture != null and !customer.picture?.startsWith('http')}"
-					         th:src="@{/image/{fname}(fname=${customer.picture})}"/>
-					    <img height="150" width="200"
-					         th:if="${customer.picture == null}"
-					         th:src="@{/image/{fname}(fname='avatar.jpg')}"/>
-					</td>
-                    <td th:text="${customer.name}"></td>
-                    <td th:text="${customer.cccd}"></td>
-                    <td th:text="${customer.phone}"></td>
-                    <td th:text="${customer.address}"></td>
-                    <td th:text="${customer.gender}"></td>
-                    <td th:text="${customer.birth}"></td>
-                    <td th:text="${customer.city}"></td>
-                    <td>
-                        <a>Add</a>
-                        <a th:href="@{/manager/customer/edit/{id}(id=${customer.IDUser})}">Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       
-    </div>
     
-    <!-- Order -->
-    <div class="container1">
-    <h1>Order List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Ship Fee</th>
-                <th>COD Fee</th>
-                <th>Source</th>
-                <th>Source City</th>
-                <th>Destination</th>
-                <th>Destination City</th>
-                <th>Width</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Order Date</th>
-                <th>Status</th>
-                <th>Goods</th>
-                <th>Transport</th>
-                <th>User</th>
-                <th>Voucher</th>
-                <th>Shipper</th>
-                <th>Post Office</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="order : ${orders}">
-                <td th:text="${order.IDOrder}"></td>
-                <td th:text="${order.shipFee}"></td>
-                <td th:text="${order.codFee}"></td>
-                <td th:text="${order.source}"></td>
-                <td th:text="${order.sourceCity}"></td>
-                <td th:text="${order.dest}"></td>
-                <td th:text="${order.destCity}"></td>
-                <td th:text="${order.width}"></td>
-                <td th:text="${order.height}"></td>
-                <td th:text="${order.weigth}"></td>
-                <td th:text="${order.orderDate}"></td>
-                <td th:text="${order.status}"></td>
-                <td th:text="${order.good?.GoodsType}"></td>
-                <td th:text="${order.transport?.TransportType}"></td>
-                <td th:text="${order.user?.name}"></td>
-                <td th:text="${order.voucher?.IDVoucher}"></td>
-                <td th:text="${order.shipper?.name}"></td>
-                <td th:text="${order.postOffice?.namePost}"></td>
-                <td>
-                    <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
-                    <a th:href="@{/manager/order/delete/{id}(id=${order.IDOrder})}" onclick="return confirm('Are you sure?')">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-
+ 
 	<!-- JS -->
      <script th:src="@{/js/managerHeader.js}"></script>
 </body>
