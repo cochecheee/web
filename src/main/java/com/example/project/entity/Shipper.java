@@ -31,7 +31,7 @@ public class Shipper implements Serializable{
 	@Column(columnDefinition = "nvarchar(50)")
 	public String city;
 	
-	@Column(columnDefinition = "nvarchar(300)")
+	@Column(columnDefinition = "nvarchar(500)")
 	public String picture;
 	
 	@Column(columnDefinition = "nvarchar(50) not null")

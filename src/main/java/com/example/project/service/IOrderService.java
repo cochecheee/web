@@ -11,4 +11,9 @@ public interface IOrderService {
 
 	List<Order> findAll();
 
+	List<Order> findByIdShipperAndStatus(String IDShipper, Integer status);
+
+	List<Order> findByIdShipper(String IDShipper);
+	
+	Long countByIdShipperAndStatus(String IDShipper, Integer status);
 }
