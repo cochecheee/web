@@ -17,8 +17,6 @@ import com.example.project.entity.PostOffice;
 import com.example.project.service.impl.OrderServiceImpl;
 import com.example.project.service.impl.PostOfficeServiceImpl;
 
-import ch.qos.logback.core.model.Model;
-
 @Controller
 @RequestMapping("/manager/order")
 public class OrderController {
