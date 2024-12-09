@@ -16,21 +16,38 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID User</th>
+                    <th>Picture</th>
                     <th>Name</th>
                     <th>CCCD</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th>Gender</th>
+                    <th>Birth</th>
+                    <th>City</th>
+                    
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="customer : ${customers}">
                     <td th:text="${customer.IDUser}"></td>
+                    <td>
+					    <img height="150" width="200"
+					         th:if="${customer.picture.startsWith('http')}"
+					         th:src="${customer.picture}"  />
+					
+					    <img height="150" width="200"
+					         th:if="${!customer.picture.startsWith('http')}"
+					         th:src="@{/image/{fname}(fname=${customer.picture})}"/>
+					</td>
                     <td th:text="${customer.name}"></td>
                     <td th:text="${customer.cccd}"></td>
                     <td th:text="${customer.phone}"></td>
                     <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.gender}"></td>
+                    <td th:text="${customer.birth}"></td>
+                    <td th:text="${customer.city}"></td>
                     <td>
                         <a>Add</a>
                         <a>Edit</a>

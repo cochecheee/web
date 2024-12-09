@@ -24,6 +24,7 @@ public class Manager implements Serializable{
 	public String password;
 	@Column(columnDefinition = "nvarchar(10) not null")
 	public String phone;
+	private String picture;
 	
 	@OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
 	@JsonManagedReference

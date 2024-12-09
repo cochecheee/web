@@ -49,9 +49,9 @@ public class ManagerController {
 	    return "views/manager/manager-home";
 	}
 	
-	@GetMapping("/manager/addPost")
-	public String addPost() {
-		return "views/manager/addPost";
+	@GetMapping("/manager/customer/edit/{id}")
+	public String editCustomer(@PathVariable("id") String customerID) {
+		
 	}
 	
 
