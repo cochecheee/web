@@ -62,17 +62,17 @@
 			<!-- Customer Details -->
 			<div class="customer-details">
 				<p class="delivery-text">Delivery details</p>
-				<p class="delivery-address">542, sdjsdb jsdb Bangalore</p>
+				<p class="delivery-address" th:text="${order.destCity}">542, sdjsdb jsdb Bangalore</p>
 				<p class="delivery-text">Contact Number</p>
-				<p class="consumer-phonenumber">+91 9632682370</p>
+				<p class="consumer-phonenumber" th:text="${order.user.phone}">+91 9632682370</p>
 			</div>
 		</div>
 		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
 			
 			<p class="order-information-header">ORDER INFORMATION</p>
 			<div class="order-information-div">
-				<p class="orderId">Order id: 12345</p>
-				<p class="ordered-time">Order placed:12.23, August 15 1947</p>
+				<p class="orderId" th:text="${order.IDOrder}">Order id: 12345</p>
+				<p class="ordered-time" th:text="${order.orderDate}">Order placed:12.23, August 15 1947</p>
 			</div>
 			<div class="item-container-div">
 				<ul>

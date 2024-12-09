@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.project.entity.Customer;
-import com.example.project.service.impl.CustomerServiceImpl;
+import com.example.project.service.ICustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
-	CustomerServiceImpl customerService;
+	ICustomerService customerService;
 	
 	@GetMapping("/{id}")
     public String home(@PathVariable("id") String id, ModelMap model) {

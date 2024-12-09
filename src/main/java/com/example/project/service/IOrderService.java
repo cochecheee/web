@@ -11,4 +11,8 @@ public interface IOrderService {
 
 	List<Order> findAll();
 
+	List<Order> filterOrderByPostID(String postID);
+
+	<S extends Order> S save(S entity);
+
 }

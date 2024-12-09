@@ -29,10 +29,12 @@ public class OrderServiceImpl implements IOrderService{
 		return orderRepository.findAll();
 	}
 
+	@Override
 	public <S extends Order> S save(S entity) {
 		return orderRepository.save(entity);
 	}
 
+	@Override
 	public List<Order> filterOrderByPostID(String postID) {
 		return orderRepository.filterOrderByPostID(postID);
 	}

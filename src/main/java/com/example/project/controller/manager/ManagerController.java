@@ -18,9 +18,9 @@ import com.example.project.entity.Customer;
 import com.example.project.entity.Manager;
 import com.example.project.entity.Order;
 import com.example.project.entity.Shipper;
-import com.example.project.service.impl.CustomerServiceImpl;
+import com.example.project.service.ICustomerService;
+import com.example.project.service.IOrderService;
 import com.example.project.service.impl.ManagerServiceImpl;
-import com.example.project.service.impl.OrderServiceImpl;
 import com.example.project.utils.ConstantUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,9 +31,9 @@ public class ManagerController {
 	@Autowired
 	ManagerServiceImpl managerService;
 	@Autowired
-	OrderServiceImpl orderService;
+	IOrderService orderService;
 	@Autowired
-	CustomerServiceImpl customerService;
+	ICustomerService customerService;
 
 	@GetMapping("/manager/{id}")
 	public String managerHome(@PathVariable("id") String id, ModelMap model) {

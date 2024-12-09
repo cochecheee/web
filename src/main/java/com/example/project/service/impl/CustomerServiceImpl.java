@@ -20,18 +20,22 @@ public class CustomerServiceImpl implements ICustomerService{
 		this.customerRepository = customerRepository;
 	}
 
+	@Override
 	public Customer findByUserName(String username) {
 		return customerRepository.findByUserName(username);
 	}
 
+	@Override
 	public <S extends Customer> S save(S entity) {
 		return customerRepository.save(entity);
 	}
 
+	@Override
 	public Optional<Customer> findById(String id) {
 		return customerRepository.findById(id);
 	}
 
+	@Override
 	public List<Customer> findAll() {
 		return customerRepository.findAll();
 	}

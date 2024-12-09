@@ -16,17 +16,17 @@ import com.example.project.entity.Manager;
 import com.example.project.entity.Order;
 import com.example.project.entity.PostOffice;
 import com.example.project.entity.Shipper;
+import com.example.project.service.IOrderService;
+import com.example.project.service.IPostOfficeService;
 import com.example.project.service.impl.ManagerServiceImpl;
-import com.example.project.service.impl.OrderServiceImpl;
-import com.example.project.service.impl.PostOfficeServiceImpl;
 
 @Controller
 @RequestMapping("/manager/")
 public class OrderController {
 	@Autowired 
-	private OrderServiceImpl orderService;
+	private IOrderService orderService;
 	@Autowired
-	private PostOfficeServiceImpl postService;
+	private IPostOfficeService postService;
 	@Autowired
 	private ManagerServiceImpl managerService;
 	

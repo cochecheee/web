@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.project.entity.Account;
 import com.example.project.entity.Customer;
-import com.example.project.service.impl.AccountServiceImpl;
-import com.example.project.service.impl.CustomerServiceImpl;
+import com.example.project.service.IAccountService;
+import com.example.project.service.ICustomerService;
 import com.example.project.service.impl.ManagerServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,9 +20,9 @@ import jakarta.servlet.http.HttpSession;
 public class RegisterController {
 	
 	@Autowired
-	CustomerServiceImpl customerService;
+	ICustomerService customerService;
 	@Autowired 
-	AccountServiceImpl accountService;
+	IAccountService accountService;
 	
 	// chĩ có customer, mặc định role là customer
 	@PostMapping("")

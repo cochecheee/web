@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.project.entity.Account;
 import com.example.project.entity.Customer;
 import com.example.project.entity.Manager;
-import com.example.project.service.impl.CustomerServiceImpl;
+import com.example.project.service.ICustomerService;
 import com.example.project.service.impl.ManagerServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	ManagerServiceImpl managerService;
 	@Autowired
-	CustomerServiceImpl customerService;
+	ICustomerService customerService;
 
 	@GetMapping("")
 	public String login(HttpServletRequest request) {

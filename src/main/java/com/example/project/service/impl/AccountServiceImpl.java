@@ -1,5 +1,7 @@
 package com.example.project.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,25 @@ public class AccountServiceImpl implements IAccountService{
 		this.accountRepository = accountRepository;
 	}
 
+	@Override
 	public Account findAccountByUserName(String username) {
 		return accountRepository.findAccountByUserName(username);
 	}
 
+	@Override
 	public <S extends Account> S save(S entity) {
 		return accountRepository.save(entity);
 	}
+
+	@Override
+	public List<Account> findAll() {
+		return accountRepository.findAll();
+	}
+
+	@Override
+	public long count() {
+		return accountRepository.count();
+	}
+	
+	
 }
