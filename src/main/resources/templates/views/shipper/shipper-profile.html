@@ -9,8 +9,8 @@
 <link rel="stylesheet" th:href="@{/css/shipperHeader.css}">
 </head>
 <body>
-	<!-- Thêm phần header -->
-	<header th:replace="~{views/shipper/fragments/header::header}"></header>
+ 	<!-- Thêm phần header -->
+	<header th:replace="~{views/shipper/fragments/header::header}"></header> 
 	
 	<div class="container mt-5">
 		<div class="card shadow">
@@ -61,8 +61,7 @@
 					<strong>Rate:</strong> <span> <span
 						th:each="i : ${#numbers.sequence(1, rate.star)}" class="star">⭐</span>
 				</span> / 5<br> <strong>Comment:</strong> <span
-					th:text="${rate.feedback}"></span> <span th:if="${star == 0}">
-						No ratings yet. </span>
+					th:text="${rate.feedback}"></span> <span th:if="${star == 0}"> No ratings yet. </span>
 				</li>
 			</ul>
 		</div>
