@@ -6,108 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/managerHeader.css}">
     <link rel="stylesheet" th:href="@{/css/manager.css}">
-    <title>ORDER MANAGEMENT SYSTEM</title>
+    <title>ORDER Details</title>
+    <style type="text/css">
+    	/* Style for button links */
+		.button-container .styled-button {
+		    display: inline-block;
+		    margin: 10px;
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    text-align: center;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    color: #fff;
+		    background-color: #007bff;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		
+		.button-container .styled-button:hover {
+		    background-color: #0056b3;
+		    transform: scale(1.05);
+		}
+		
+		.button-container .styled-button:active {
+		    background-color: #004085;
+		    transform: scale(0.95);
+		}
+		
+		/* Centering the buttons */
+		.button-container {
+		    display: flex;
+		    justify-content: center;
+		    flex-wrap: wrap;
+		    margin: 20px 0;
+		}
+    
+    </style>
 </head>
 <body>
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
-    <!-- Body  -->
-    <div class="container1">
-         <h1>Customer List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>CCCD</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="customer : ${customers}">
-                    <td th:text="${customer.IDUser}"></td>
-                    <td th:text="${customer.name}"></td>
-                    <td th:text="${customer.cccd}"></td>
-                    <td th:text="${customer.phone}"></td>
-                    <td th:text="${customer.address}"></td>
-                    <td>
-                        <a>Add</a>
-                        <a>Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-    </div>
+	
+	<div class="button-container">
+	    <a th:href="@{/manager/customers}" class="styled-button">View Customer</a><br />
+	    <a th:href="@{/manager/shippers(managerID=${managerID})}" class="styled-button">Manage Shipper</a><br />
+	    <a th:href="@{/manager/orders(managerID=${managerID})}" class="styled-button">Phân đơn hàng cho shipper</a><br />
+	</div>
     
-    <!-- Shipper -->
-    <div class="container1">
-         <h1>Shipper List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>CCCD</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="shipper : ${shippers}">
-                    <td th:text="${shipper.IDShipper}"></td>
-                    <td th:text="${shipper.name}"></td>
-                    <td th:text="${shipper.cccd}"></td>
-                    <td th:text="${shipper.phone}"></td>
-                    <td th:text="${shipper.address}"></td>
-                    <td>
-                        <a>Add</a>
-                        <a>Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       
-    </div>
     
-    <!-- Shipper -->
-    <div class="container1">
-         <h1>Order List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Ship Fee</th>
-                    <th>COD Fee</th>
-                    <th>Width</th>
-                    <th>Height</th>
-                    <th>Order Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="order : ${orders}">
-                    <td th:text="${order.IDOrder}"></td>
-                    <td th:text="${order.shipFee}"></td>
-                    <td th:text="${order.codFee}"></td>
-                    <td th:text="${order.width}"></td>
-                    <td th:text="${order.height}"></td>
-                    <td th:text="${order.orderDate}"></td>
-                    <td>
-                    	
-                        <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
-                        <a>Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       
-    </div>
-
+ 
 	<!-- JS -->
      <script th:src="@{/js/managerHeader.js}"></script>
 </body>

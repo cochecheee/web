@@ -12,26 +12,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.project.entity.Manager;
 import com.example.project.entity.Order;
 import com.example.project.entity.PostOffice;
+import com.example.project.entity.Shipper;
+import com.example.project.service.impl.ManagerServiceImpl;
 import com.example.project.service.impl.OrderServiceImpl;
 import com.example.project.service.impl.PostOfficeServiceImpl;
 
-import ch.qos.logback.core.model.Model;
-
 @Controller
-@RequestMapping("/manager/order")
+@RequestMapping("/manager/")
 public class OrderController {
 	@Autowired 
-	OrderServiceImpl orderService;
+	private OrderServiceImpl orderService;
 	@Autowired
-	PostOfficeServiceImpl postService;
+	private PostOfficeServiceImpl postService;
+	@Autowired
+	private ManagerServiceImpl managerService;
 	
-	@GetMapping("/edit/{id}")
-    public String editOrder(@PathVariable("id") String id, ModelMap model, @RequestParam("managerID") String managerID) {
+	@GetMapping("order/edit/{id}")
+    public String editOrder(@PathVariable("id") String id, 
+    											ModelMap model, 
+    											@RequestParam("managerID") String managerID) {
         Order order = orderService.findById(id).get();
         model.addAttribute("order", order);
         model.addAttribute("managerID", managerID);
+        
+        Manager manager = managerService.findById(managerID).get();
+        List<Shipper> shippers = manager.getShippers();	
         
         // post office
         List<PostOffice> posts = postService.findPostOfficeByCity("Hanoi");
@@ -40,15 +48,40 @@ public class OrderController {
 			
 		}
         model.addAttribute("posts", posts);
+        model.addAttribute("shippers", shippers);
         return "views/manager/order-edit";
     }
-	@PostMapping("/edit")
-	public String createOrder(@ModelAttribute("order") Order order, @RequestParam("postOffice") String idPost, @RequestParam("managerID") String managerID) {
-		System.out.println(idPost);
+	
+	@PostMapping("order/edit")
+	public String editOrderView(@ModelAttribute("order") Order order, 
+								@RequestParam("postOffice") String idPost, 
+								@RequestParam("shipper") String idShipper,
+								@RequestParam("managerID") String managerID) {
+		// System.out.println(idPost);
 		PostOffice post = postService.findById(idPost).get();
 		order.setPostOffice(post);
 		
+		// Shipper shipper = shipperService.findByID(idShipper).get();
+		// order.setShipper(shipper);
+		
 	    orderService.save(order); // Lưu đối tượng order vào database
 	    return "redirect:/manager/" + managerID; // Điều hướng sau khi lưu
+	}
+	
+	@GetMapping("orders")
+	public String showOrders(ModelMap model, @RequestParam("managerID") String managerID) {
+		
+		Manager manager = managerService.findById(managerID).get();
+		String postOfficeId = manager.getPost().getIDPost();
+		
+		List<Order> orders = orderService.filterOrderByPostID(postOfficeId);
+		if(orders != null) {
+			System.out.println("khác null");
+		}
+		
+		model.addAttribute("orders", orders);
+		model.addAttribute("managerID", managerID);
+		
+		return "views/manager/order-details";
 	}
 }

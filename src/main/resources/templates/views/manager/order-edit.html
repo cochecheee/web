@@ -7,47 +7,121 @@
     <link rel="stylesheet" th:href="@{/css/managerHeader.css}">
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <title>ORDER MANAGEMENT SYSTEM</title>
+    <style>
+        /* Style for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Centered container for the form */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        form input, form select, form button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        form button:active {
+            background-color: #004085;
+            transform: scale(0.95);
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        /* Optional section wrapper */
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 	<header th:replace="~{views/manager/fragments/header::header}"></header>
+	
+	<div class="container">
 	<h1>Edit Order</h1>
     <form th:action="@{/manager/order/edit}" th:object="${order}" method="post">
     	 <!-- Truyền Manager ID -->
     	<input type="hidden" name="managerID" th:value="${managerID}" />
-        <input type="hidden" th:field="*{IDOrder}" th:text="${order.IDOrder}" readonly/>
+        <input type="hidden" th:field="*{IDOrder}" readonly/>
 
         <label for="shipFee">Shipping Fee:</label>
-        <input type="number" name="shipFee" id="shipFee" th:field="*{shipFee}" th:text="${order.shipFee}" required /><br />
+        <input type="number" name="shipFee" id="shipFee" th:field="*{shipFee}"  required /><br />
 
         <label for="codFee">COD Fee:</label>
-        <input type="number" name="codFee" id="codFee" th:field="*{codFee}" th:text="${order.codFee}" required /><br />
+        <input type="number" name="codFee" id="codFee" th:field="*{codFee}" required /><br />
 
         <label for="source">Source:</label>
-        <input type="text" name="source" id="source" th:field="*{source}" th:text="${order.source}"required /><br />
+        <input type="text" name="source" id="source" th:field="*{source}" required /><br />
 
         <label for="sourceCity">Source City:</label>
-        <input type="text" id="sourceCity" th:field="*{sourceCity}" th:text="${order.sourceCity}"required /><br />
+        <input type="text" id="sourceCity" th:field="*{sourceCity}" required /><br />
 
         <label for="dest">Destination:</label>
-        <input type="text" th:field="*{dest}" id="dest" th:text="${order.dest}" required /><br />
+        <input type="text" th:field="*{dest}" id="dest" required /><br />
 
         <label for="destCity">Destination City:</label>
-        <input type="text" th:field="*{destCity}" id="destCity" th:text="${order.destCity}" required /><br />
+        <input type="text" th:field="*{destCity}" id="destCity" required /><br />
 
         <label for="width">Width:</label>
-        <input type="number" th:field="*{width}" id="width" th:text="${order.width}" required /><br />
+        <input type="number" th:field="*{width}" id="width" required /><br />
 
         <label for="height">Height:</label>
-        <input type="number" th:field="*{height}" id="height" th:text="${order.height}"required /><br />
+        <input type="number" th:field="*{height}" id="height" required /><br />
 
         <label for="weigth">Weight:</label>
-        <input type="number" th:field="*{weigth}" id="weigth" th:text="${order.weigth}" required /><br />
+        <input type="number" th:field="*{weigth}" id="weigth" required /><br />
 
         <label for="orderDate">Order Date:</label>
-        <input type="date" th:field="*{orderDate}" id="orderDate" th:text="${order.orderDate}" required /><br />
+        <input type="date" th:field="*{orderDate}" id="orderDate" required /><br />
 
         <label for="status">Status:</label>
-        <input type="number" th:field="*{status}" id="status" th:text="${order.status}" required /><br />
+		<input type="number" th:field="*{status}" id="status" required /><br />
+
 
         <!-- Các trường ManyToOne -->
 
@@ -55,7 +129,13 @@
         <select name="postOffice" id="postOffice">
             <option th:each="p : ${posts}" th:value="${p.IDPost}" th:text="${p.namePost}"></option>
         </select><br />
+        
+        <label for="shipper">Shipper</label>
+        <select name="shipper" id="shipper">
+            <option th:each="s : ${shippers}" th:value="${s.IDShipper}" th:text="${s.name}" data-img-src="@{/image/{fname}(fname='avatar.jpg')}"></option>
+        </select><br />
 
         <button type="submit">Update Order</button>
     </form>
-</body>
+    </div>
+</body> 

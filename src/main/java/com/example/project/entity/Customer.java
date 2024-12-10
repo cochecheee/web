@@ -37,7 +37,7 @@ public class Customer implements Serializable{/**
 	public String phone;
 	public String name;
 	public Boolean gender;
-	public Date birth;
+	public String birth;
 	
 	@Column(columnDefinition = "nvarchar(100)")
 	public String address;
@@ -48,6 +48,7 @@ public class Customer implements Serializable{/**
 	@Column(columnDefinition = "nvarchar(300)")
 	public String picture;
 	
+	private String username;
 	@Column(columnDefinition = "nvarchar(50) not null")
 	public String password;
 	
