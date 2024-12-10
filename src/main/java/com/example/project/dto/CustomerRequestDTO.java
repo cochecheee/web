@@ -1,6 +1,7 @@
 package com.example.project.dto;
+import java.time.LocalDate;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,11 @@ public class CustomerRequestDTO {
 	private String phone;
 	private String name;
 	private Boolean gender;
-	private Date birth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate birth;
+	private String email;
+	private String username;
+	private String password;
 	
 	private String address;
 	private String city;

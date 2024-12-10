@@ -126,13 +126,13 @@
 
 			<!-- Customer Details -->
 			<div class="customer-details">
-				<p class="delivery-text">Delivery Customer details</p>
-				<p class="delivery-address" th:text="${order.user.name}"></p>
-				<p class="delivery-text">Contact Number</p>
-				<p class="consumer-phonenumber" th:text="${order.user.phone}"></p>
+			    <p class="delivery-text">Delivery Customer details</p>
+			    <p class="delivery-address" th:text="${order.user != null ? order.user.name : 'No customer assigned'}"></p>
+			    <p class="delivery-text">Contact Number</p>
+			    <p class="consumer-phonenumber" th:text="${order.user != null ? order.user.phone : 'No phone available'}"></p>
 			</div>
 			
-			<!-- Shipper Details --> 
+			<!-- Shipper Details -->
 			<div class="customer-details">
 			    <p class="delivery-text">Delivery Shipper details</p>
 			    
@@ -142,6 +142,7 @@
 			    <p class="delivery-text">Shipper Contact Number</p>
 			    <p class="consumer-phonenumber" th:text="${order.shipper != null ? order.shipper.phone : 'No phone available'}"></p>
 			</div>
+
 
 		</div>
 	</div>

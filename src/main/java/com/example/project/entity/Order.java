@@ -19,8 +19,7 @@ public class Order implements Serializable{
 	public String IDOrder;
 	
 	private String orderName;
-	private String orderQuantity;
-	
+
 	public Integer shipFee;
 	public Integer codFee;
 	

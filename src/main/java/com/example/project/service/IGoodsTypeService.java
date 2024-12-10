@@ -1,15 +1,18 @@
 package com.example.project.service;
 
+import java.util.List;
 import java.util.Optional;
 
-import com.example.project.entity.TransportType;
+import com.example.project.entity.GoodsType;
 
 public interface IGoodsTypeService {
 
 	long count();
 
-	Optional<TransportType> findById(String id);
+	Optional<GoodsType> findById(String id);
 
-	<S extends TransportType> S save(S entity);
+	List<GoodsType> findAll();
+
+	<S extends GoodsType> S save(S entity);
 
 }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce8e6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        h2 {
+            color: #d32f2f;
+            text-align: center;
+        }
+        h3 {
+            color: #f57c00;
+        }
+        .order-details p {
+            margin: 10px 0;
+            color: #333;
+        }
+        .form-row {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #b71c1c;
+        }
+        .btn-secondary {
+            background-color: #f57c00;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #ef6c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Payment Form</h2>
+        <!-- Order Details -->
+        <div class="order-details">
+            <h3>Order Details</h3>
+            <p><strong>Order ID:</strong> <span th:text="${order.id}">12345</span></p>
+            <p><strong>Customer Name:</strong> <span th:text="${order.customerName}">John Doe</span></p>
+            <p><strong>Delivery Address:</strong> <span th:text="${order.deliveryAddress}">123 Main St</span></p>
+            <p><strong>Total Amount:</strong> <span th:text="${order.totalAmount}">$100</span></p>
+        </div>
+
+        <!-- Payment Form -->
+        <form id="paymentForm" method="post" th:action="@{/payment/confirm}">
+            <input type="hidden" name="orderId" th:value="${order.id}" />
+            <div class="form-row">
+                <label for="paymentMethod">Select Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="" disabled selected>Select payment method</option>
+                    <option value="vnpay">VNPay</option>
+                    <option value="cash">Cash</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Confirm Payment</button>
+                <a href="#" th:href="@{/customer/cancle/{id}(id=${customer.id})}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function (e) {
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            if (paymentMethod === "vnpay") {
+                alert("Redirecting to VNPay for payment...");
+                window.location.href = "/vnpay/redirect";
+                e.preventDefault();
+            } else if (paymentMethod === "cash") {
+                alert("Payment successful!");
+            } else {
+                alert("Please select a payment method.");
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
