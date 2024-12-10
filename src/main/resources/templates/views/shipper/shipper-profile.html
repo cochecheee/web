@@ -49,11 +49,10 @@
 
 		<!-- Shipper Ratings -->
 		<div class="mt-4">
-			<h5 class="text-primary">
-				Ratings: <span> <span
-					th:each="i : ${#numbers.sequence(1, star)}" class="star">⭐</span> (<span
-					th:text="${star}"></span>/5)
-				</span>
+			<h5 class="text-primary"> Ratings: 
+			    <span th:if="${star > 0}" th:each="i : ${#numbers.sequence(1, star)}" class="star">⭐</span>
+			    <span th:if="${star == 0}">No ratings</span>
+			    (<span th:text="${star}"></span>/5)
 			</h5>
 			<ul class="list-group">
 				<li class="list-group-item" th:each="rate : ${shipper.rates}">

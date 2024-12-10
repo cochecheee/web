@@ -164,6 +164,7 @@ public class ShipperController {
 		    return "views/shipper/editProfile";
 		}
 		return "redirect:/shipper/profile/" + IDShipper;
-
 	}
+	
+	
 }
