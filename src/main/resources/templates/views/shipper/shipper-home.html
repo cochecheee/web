@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" th:href="@{/css/managerHeader.css}">
+<link rel="stylesheet" th:href="@{/css/shipperHeader.css}">
 <link rel="stylesheet" th:href="@{/css/manager.css}">
 <title>ORDER MANAGEMENT SYSTEM</title>
 </head>
@@ -48,7 +48,9 @@
 					</td>
 					<td>
 						<a th:href="@{/shipper/order/delivered/{id}(id=${order.IDOrder})}" class="btn btn-success btn-sm">Mark as Delivered</a>
+						<br>
 						<a th:href="@{/shipper/order/failed/{id}(id=${order.IDOrder})}" class="btn btn-fail btn-sm">Mark as Failed</a>
+						<br>
 						<a th:href="@{/shipper/order/shipping/{id}(id=${order.IDOrder})}" class="btn btn-shipping btn-sm">Mark as Shipping</a>
 					</td>
 				</tr>
@@ -86,7 +88,9 @@
 					</td>
 					<td>
 						<a th:href="@{/shipper/order/delivered/{id}(id=${order.IDOrder})}" class="btn btn-success btn-sm">Mark as Delivered</a>
+						<br>
 						<a th:href="@{/shipper/order/failed/{id}(id=${order.IDOrder})}" class="btn btn-fail btn-sm">Mark as Failed</a>
+						<br>
 						<a th:href="@{/shipper/order/shipping/{id}(id=${order.IDOrder})}" class="btn btn-shipping btn-sm">Mark as Shipping</a>
 						
 					</td>
@@ -125,7 +129,9 @@
 					</td>
 					<td>
 						<a th:href="@{/shipper/order/delivered/{id}(id=${order.IDOrder})}" class="btn btn-success btn-sm">Mark as Delivered</a>
+						<br>
 						<a th:href="@{/shipper/order/failed/{id}(id=${order.IDOrder})}" class="btn btn-fail btn-sm">Mark as Failed</a>
+						<br>
 						<a th:href="@{/shipper/order/shipping/{id}(id=${order.IDOrder})}" class="btn btn-shipping btn-sm">Mark as Shipping</a>
 						
 					</td>

@@ -36,7 +36,17 @@ public class ShipperController {
 
 	@Autowired
 	OrderServiceImpl orderService;
-
+	
+	//Log out
+	@GetMapping("/shipper/logout/{id}")
+	public String Logout(@PathVariable("id") String id) {
+		//Kết thúc Session ở đây
+		
+		return "redirect:/login";
+	}
+	
+	
+	//Shipper Home hiện đơn cần giao, đã giao, giao thất bại
 	@GetMapping("/shipper/{id}")
 	public String shipperHome(@PathVariable("id") String id, Model model) {
 		Shipper shipper = shipperService.findByID(id).get();
@@ -57,9 +67,11 @@ public class ShipperController {
 		model.addAttribute("ordersFailed", orderFailed);
 		model.addAttribute("ordersDelivered", orderDelivered);
 		model.addAttribute("id", idShipper);
+		model.addAttribute("shipper", shipper);
 		return "views/shipper/shipper-home";
 	}
-
+	
+	//Trang Profile
 	@GetMapping("/shipper/profile/{id}")
 	public String Profile(@PathVariable("id") String id, Model model) {
 		Shipper shipper = shipperService.findByID(id).get();
