@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.project.entity.Order;
 import com.example.project.entity.Rate;
 import com.example.project.entity.Shipper;
+import com.example.project.model.ShipperModel;
 import com.example.project.repository.IOrderRepository;
 import com.example.project.repository.IRateRepository;
 import com.example.project.repository.IShipperRepository;
@@ -97,5 +98,6 @@ public class ShipperServiceImpl implements IShipperService {
 		shipperRepository.save(shipper);
 		
 	}
+
 
 }

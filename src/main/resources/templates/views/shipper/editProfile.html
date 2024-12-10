@@ -15,10 +15,15 @@
                 <form th:action="@{/shipper/profile/update/{id}(id=${shipper.IDShipper})}" method="POST" enctype="multipart/form-data">
                     <!-- Hidden ID -->
                     <input type="hidden" name="IDShipper" th:value="${shipper.IDShipper}">
+                    
+                    <div th:if="${errorMessage}" 
+					     style="color: red; font-weight: bold; text-align: center; margin: 10px;">
+					    <p th:text="${errorMessage}"></p>
+					</div>
 
                     <!-- Picture (Link image): -->
 				    <label for="images">Picture Link: </label><br>
-				    <input type="text" id="images" name="picture" th:value="${shipper.picture != null ? shipper.picture : ''}"><br>
+				    <input type="text" id="images" name="images" th:value="${shipper.picture != null ? shipper.picture : ''}"><br>
 				
 				    <!-- Upload new image (if any) -->
 				    <label for="images1">Upload New Image:</label><br> 
