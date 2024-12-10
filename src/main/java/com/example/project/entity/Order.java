@@ -18,6 +18,9 @@ public class Order implements Serializable{
 	@GeneratedValue(strategy = GenerationType.UUID)
 	public String IDOrder;
 	
+	private String orderName;
+	private String orderQuantity;
+	
 	public Integer shipFee;
 	public Integer codFee;
 	

@@ -9,25 +9,30 @@
 <link rel='stylesheet'
 	href='https://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans:400,700|Oswald:400,500,700'>
 <link rel="stylesheet" th:href="@{css/style.css}">
+<style type="text/css">
 
+</style>
 </head>
 <body>
+
+	<!-- HEADER -->
 	<!-- partial:index.partial.html -->
-	<p class="order-successful-text">ORDER SUCCESSFUL</p>
+	<p class="order-successful-text" style="color: #FF4B2B; font-family: 'Oswald', sans-serif;">ORDER SUCCESSFUL</p>
 
 	<div class="main-div col-md-12 col-lg-12">
 		<div class="track-order-div col-md-8 col-lg-8 col-sm-12 col-xs-12">
 			<p class="track-your-order">TRACK YOUR ORDER</p>
 			<div class="order-status-div">
-			<!-- cho cái ảnh hàng vô  -->
-				<!-- Dynamically load image using Thymeleaf -->
+			
+			<!-- 	<!-- cho cái ảnh hàng vô  
+				Dynamically load image using Thymeleaf
 				<img class="order-placed-image" 
 				     th:src="@{${order.shipper.picture}}" 
 				     alt="Order Placed" 
 				     width="50px"
 				     height="50px"
 				     style="border-radius: 50%; object-fit: cover;"
-				     />
+				     /> -->
 				
 				<p class="order-status-text">DELIVERY IS ON THE WAY</p>
 				<p class="order-id" th:text=${order.IDOrder}></p>
@@ -46,60 +51,109 @@
 
 							<!-- Display status name based on the current status -->
 							<p th:switch="${status}">
+								<!-- customer đặt để shipper lấy -->
 								<span th:case="1">ORDER PLACED</span>
-								<span th:case="2">ORDER
-									PREPARED</span> <span th:case="3">ON
-									THE WAY</span> <span th:case="4">DELIVERED</span>
-								
-								<!-- Fallback case -->
+								<!-- manager sẽ phân cho shipper dựa trên thông tin đặt hàng -->
+								<span th:case="2">ORDER PREPARED</span> 
+								<!-- Shipper lấy từ post và giao -->
+								<span th:case="3">ON THE WAY</span> 
+								<!-- shipper cập nhật là đã tới người nhận -->
+								<span th:case="4">DELIVERED</span>
+
 							</p>
 						</div>
 					</li>
 				</ul>
 
+			</div>
+				<!-- Status Explanation Table -->
+			<div style="margin-left: 15px; margin-top: 50px;">
+				<h4>Status Explanation:</h4>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Icon</th>
+							<th>Status</th>
+							<th>Meaning</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="https://cdn.zeplin.io/58e89cb1bcbb20c60457e08c/assets/E67E571F-0710-43B2-8D07-793788CE5A9E.png" alt="Order Placed" width="30px" height="30px" /></td>
+							<td>ORDER PLACED</td>
+							<td>The order has been placed by the customer.</td>
+						</tr>
+						<tr>
+							<td><img src="https://cdn.zeplin.io/58e89cb1bcbb20c60457e08c/assets/E67E571F-0710-43B2-8D07-793788CE5A9E.png" alt="Order Prepared" width="30px" height="30px" /></td>
+							<td>ORDER PREPARED</td>
+							<td>The order has been prepared and is ready for shipping.</td>
+						</tr>
+						<tr>
+							<td><img src="/assets/images/cross.png" alt="Order on the way" width="30px" height="30px" /></td>
+							<td>ON THE WAY</td>
+							<td>The order is currently being delivered to the customer.</td>
+						</tr>
+						<tr>
+							<td><img src="/assets/images/cross.png" alt="Order Delivered" width="30px" height="30px" /></td>
+							<td>DELIVERED</td>
+							<td>The order has been successfully delivered to the customer.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- Right side column: Customer Details -->
+		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+			<p class="order-information-header">ORDER INFORMATION</p>
+		<!-- 	<div class="order-information-div">
+				<p class="delivery-text">Order details</p>
+				<p class="delivery-text">Order ID</p>
+				<p class="ordered-time" th:text="${order.IDOrder}"></p>
+				<p class="delivery-text">Orderd Date</p>
+				<p class="ordered-time" th:text="${order.orderDate}"></p>
+				<p class="delivery-text">Order Name</p>
+				<p class="orderId" th:text="${order.orderName}"></p>
+			</div> -->
+			<!-- Order Details  -->
+			<div class="customer-details">
+				<p class="delivery-text">Order ID</p>
+				<p class="delivery-address" th:text="${order.IDOrder}"></p>
+				<p class="delivery-text">Ordered Date</p>
+				<p class="consumer-phonenumber" th:text="${order.orderDate}"></p>
+				<p class="delivery-text">Ordered Name</p>
+				<p class="consumer-phonenumber" th:text="${order.orderName}"></p>
 			</div>
 
 			<!-- Customer Details -->
 			<div class="customer-details">
-				<p class="delivery-text">Delivery details</p>
-				<p class="delivery-address" th:text="${order.destCity}">542, sdjsdb jsdb Bangalore</p>
+				<p class="delivery-text">Delivery Customer details</p>
+				<p class="delivery-address" th:text="${order.user.name}"></p>
 				<p class="delivery-text">Contact Number</p>
-				<p class="consumer-phonenumber" th:text="${order.user.phone}">+91 9632682370</p>
+				<p class="consumer-phonenumber" th:text="${order.user.phone}"></p>
 			</div>
-		</div>
-		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
 			
-			<p class="order-information-header">ORDER INFORMATION</p>
-			<div class="order-information-div">
-				<p class="orderId" th:text="${order.IDOrder}">Order id: 12345</p>
-				<p class="ordered-time" th:text="${order.orderDate}">Order placed:12.23, August 15 1947</p>
+			<!-- Shipper Details --> 
+			<div class="customer-details">
+			    <p class="delivery-text">Delivery Shipper details</p>
+			    
+			    <!-- Check if the order has a shipper and display shipper details if available -->
+			    <p class="delivery-address" th:text="${order.shipper != null ? order.shipper.name : 'No shipper assigned'}"></p>
+			    
+			    <p class="delivery-text">Shipper Contact Number</p>
+			    <p class="consumer-phonenumber" th:text="${order.shipper != null ? order.shipper.phone : 'No phone available'}"></p>
 			</div>
-			<div class="item-container-div">
-				<ul>
-					<li>
-						<div class="item-list-div">
-							<p>
-								ATB Combo <span class="quantity"> * 2</span>
-							</p>
-							<span class="combo-item"> item 1 </span> <span class="combo-item">
-								item 2 </span> <span class="combo-item"> item 3 </span>
-						</div>
-					</li>
-					<li>
-						<div class="item-list-div">
-							<p>
-								ATB <span class="quantity"> * 2</span>
-							</p>
-						</div>
-					</li>
-				</ul>
-			</div>
+
 		</div>
+	</div>
+			
+			
 	</div>
 	<!-- partial -->
 	<script
 		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 	<script
 		src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+		
+	<!-- FOOTER -->
 </body>
 </html>

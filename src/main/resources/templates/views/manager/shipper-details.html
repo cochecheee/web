@@ -1,22 +1,170 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<!-- Styles -->
+	<style>
+	    /* Tổng thể bảng */
+	    table {
+	        width: 100%;
+	        border-collapse: collapse;
+	        margin-top: 20px;
+	    }
 	
-	<!-- Search Form -->
-	<form id="searchForm" onsubmit="return false;">
-	    <label for="searchUsername">Username:</label>
-	    <input type="text" id="searchUsername" name="username" placeholder="Search by Username" oninput="searchCustomers()">
-	    
-	    <label for="searchID">User ID:</label>
-	    <input type="text" id="searchID" name="userID" placeholder="Search by User ID" oninput="searchCustomers()">
-	</form>
-	<!-- Body  -->
+	    thead th {
+	        background-color: #fdd835; /* Màu vàng sáng */
+	        color: #d32f2f; /* Màu đỏ đậm */
+	        padding: 10px;
+	        text-align: center;
+	        font-weight: bold;
+	        border: 2px solid #d32f2f;
+	    }
+	
+	    tbody td {
+	        background-color: #fff8e1; /* Màu vàng nhạt */
+	        color: #000; /* Màu chữ đen */
+	        padding: 10px;
+	        text-align: center;
+	        border: 1px solid #d32f2f;
+	    }
+	
+	    tbody tr:nth-child(odd) td {
+	        background-color: #ffecb3; /* Màu vàng nhạt xen kẽ */
+	    }
+	
+	    tbody tr:hover td {
+	        background-color: #ffd54f; /* Màu vàng đậm khi hover */
+	    }
+	
+	    /* Hình ảnh */
+	    td img {
+	        border: 2px solid #d32f2f; /* Khung màu đỏ đậm */
+	        border-radius: 8px; /* Bo góc hình ảnh */
+	    }
+	
+	    /* Nút Add và Delete */
+	    .action-buttons {
+	        display: flex;
+	        justify-content: center;
+	        gap: 10px; /* Tạo khoảng cách giữa các nút */
+	    }
+	
+	    .action-buttons a {
+	        text-decoration: none;
+	        color: white;
+	        font-size: 14px;
+	        padding: 8px 12px;
+	        border-radius: 4px;
+	        font-weight: bold;
+	    }
+	
+	    .action-buttons .add {
+	        background-color: #4caf50; /* Màu xanh lá cho nút Add */
+	        border: 2px solid #388e3c;
+	    }
+	
+	    .action-buttons .add:hover {
+	        background-color: #81c784; /* Màu xanh nhạt khi hover */
+	    }
+	
+	    .action-buttons .delete {
+	        background-color: #d32f2f; /* Màu đỏ cho nút Delete */
+	        border: 2px solid #b71c1c;
+	    }
+	
+	    .action-buttons .delete:hover {
+	        background-color: #ef9a9a; /* Màu đỏ nhạt khi hover */
+	    }
+	
+	    /* Tiêu đề */
+	    h1 {
+	        color: #d32f2f; /* Màu đỏ đậm */
+	        text-align: center;
+	        margin-bottom: 20px;
+	    }
+	
+	    /* Form tìm kiếm */
+	    #searchForm {
+	        display: flex;
+	        justify-content: center;
+	        gap: 15px; /* Khoảng cách giữa các ô input */
+	        margin-bottom: 20px;
+	    }
+	
+	    #searchForm input {
+	        padding: 8px;
+	        border: 1px solid #d32f2f;
+	        border-radius: 4px;
+	        font-size: 14px;
+	    }
+	
+	    /* Form tìm kiếm */
+	    #searchForm {
+	        display: flex;
+	        justify-content: center; /* Canh giữa form */
+	        align-items: center; /* Canh giữa theo chiều dọc */
+	        gap: 20px; /* Khoảng cách giữa các thành phần */
+	        background-color: #fff8e1; /* Màu nền vàng nhạt */
+	        padding: 15px 20px; /* Khoảng cách bên trong form */
+	        border: 2px solid #d32f2f; /* Viền đỏ đậm */
+	        border-radius: 8px; /* Bo tròn form */
+	        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+	        margin-bottom: 20px; /* Khoảng cách phía dưới form */
+	    }
+	
+	    /* Nhãn */
+	    #searchForm label {
+	        color: #d32f2f; /* Màu đỏ đậm */
+	        font-weight: bold;
+	        font-size: 16px;
+	    }
+	
+	    /* Ô input */
+	    #searchForm input {
+	        padding: 10px;
+	        border: 2px solid #d32f2f; /* Viền đỏ */
+	        border-radius: 6px; /* Bo tròn ô input */
+	        font-size: 14px;
+	        outline: none; /* Bỏ viền mặc định khi focus */
+	    }
+	
+	    #searchForm input:focus {
+	        border-color: #fdd835; /* Viền vàng khi focus */
+	        box-shadow: 0 0 8px #fdd835; /* Hiệu ứng ánh sáng */
+	    }
+	
+	    /* Tương thích với màn hình nhỏ */
+	    @media (max-width: 768px) {
+	        #searchForm {
+	            flex-direction: column; /* Căn theo cột trên màn hình nhỏ */
+	            align-items: stretch; /* Đặt các thành phần full chiều ngang */
+	            gap: 10px; /* Giảm khoảng cách giữa các thành phần */
+	        }
+	    }
+	</style>
+
+</head>
+
+<body>
+	<!-- HEADER  -->
+
+
+    <!-- Search Form -->
+    <form id="searchForm" onsubmit="return false;">
+        <label for="searchUsername">Username:</label>
+        <input type="text" id="searchUsername" name="username" placeholder="Search by Username" oninput="searchCustomers()">
+
+        <label for="searchID">User ID:</label>
+        <input type="text" id="searchID" name="userID" placeholder="Search by User ID" oninput="searchCustomers()">
+    </form>
+
+    <!-- Body -->
     <div class="container1">
-         <h1>Customer List</h1>
+        <h1>Shipper List</h1>
         <table id="customerTable">
             <thead>
                 <tr>
-                	<th>ID Manager</th>
+                    <th>ID Manager</th>
                     <th>ID Shipper</th>
                     <th>Picture</th>
                     <th>Name</th>
@@ -24,75 +172,79 @@
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Gender</th>
-                    <th>Birth</th>
+                    <th>Username</th>
+                    <th>Password</th>
                     <th>City</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="shipper : ${shippers}">
-                	<td th:text="${shipper.manager?.IDManager}"></td>
+                    <td th:text="${shipper.manager?.IDManager}"></td>
                     <td th:text="${shipper.IDShipper}"></td>
                     <td>
-					    <img height="150" width="200"
-					         th:if="${shipper.picture != null and shipper.picture.startsWith('http')}"
-					         th:src="${shipper.picture}"  />
-					
-					    <img height="150" width="200"
-					         th:if="${shipper.picture != null and !shipper.picture?.startsWith('http')}"
-					         th:src="@{/image/{fname}(fname=${shipper.picture})}"/>
-					    <img height="150" width="200"
-					         th:if="${shipper.picture == null}"
-					         th:src="@{/image/{fname}(fname='avatar.jpg')}"/>
-					</td>
+                        <img height="150" width="200"
+                            th:if="${shipper.picture != null and shipper.picture.startsWith('http')}"
+                            th:src="${shipper.picture}" />
+
+                        <img height="150" width="200"
+                            th:if="${shipper.picture != null and !shipper.picture?.startsWith('http')}"
+                            th:src="@{/image/{fname}(fname=${shipper.picture})}" />
+                        <img height="150" width="200"
+                            th:if="${shipper.picture == null}"
+                            th:src="@{/image/{fname}(fname='avatar.jpg')}" />
+                    </td>
                     <td th:text="${shipper.name}"></td>
                     <td th:text="${shipper.cccd}"></td>
                     <td th:text="${shipper.phone}"></td>
                     <td th:text="${shipper.address}"></td>
                     <td th:text="${shipper.gender}"></td>
-                    <td th:text="${shipper.birth}"></td>
+         
+                    <td th:text="${shipper.username}"></td>
+                    <td th:text="${shipper.password}"></td>
                     <td th:text="${shipper.city}"></td>
                     <td>
-                        <a th:href="@{/manager/shipper/add/{id}(id=${shipper.IDShipper})}">Add</a>
-                        <a th:href="@{/manager/shipper/edit/{id}(id=${shipper.IDShipper})}">Edit</a>
-                        <a th:href="@{/manager/shipper/delete/{id}(id=${shipper.IDShipper})}">Delete</a>
-                    </td>
+					    <div class="action-buttons">
+					        <a th:href="@{/manager/shipper/add(managerID=${shipper.manager.IDManager})}" class="add">Add</a>
+					        <a th:href="@{/manager/shipper/delete/{id}(id=${shipper.IDShipper})}" class="delete">Delete</a>
+					    </div>
+					</td>
                 </tr>
             </tbody>
         </table>
-        
     </div>
-    
-<script>
+
+<!-- Action  -->
+   <script>
     // Function to search and filter table rows
-    function searchCustomers() {
-        // Get the values from the input fields
-        var username = document.getElementById('searchUsername').value.toLowerCase();
-        var userID = document.getElementById('searchID').value.toLowerCase();
+	    function searchCustomers() {
+	        var username = document.getElementById('searchUsername').value.toLowerCase();
+	        var shipperID = document.getElementById('searchID').value.toLowerCase();
+	
+	        // Get all table rows
+	        var rows = document.getElementById('customerTable').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+	
+	        for (var i = 0; i < rows.length; i++) {
+	            var cells = rows[i].getElementsByTagName('td');
+	
+	            // Ensure cells array exists and has the expected length
+	            if (cells.length >= 10) {
+	                var usernameCell = cells[8].textContent.trim().toLowerCase(); // Adjust index for Username
+	                var shipperIDCell = cells[1].textContent.trim().toLowerCase(); // Adjust index for ID Shipper
+	
+	                // Match conditions
+	                var matchesUsername = username === '' || usernameCell.includes(username);
+	                var matchesShipperID = shipperID === '' || shipperIDCell.includes(shipperID);
+	
+	                // Show/Hide rows based on match
+	                rows[i].style.display = matchesUsername && matchesShipperID ? '' : 'none';
+	            }
+	        }
+	    }
+	</script>
+	
+	<!-- FOOTER  -->
 
-        // Get all rows in the table
-        var rows = document.getElementById('customerTable').getElementsByTagName('tr');
-        
-        // Loop through all table rows and hide those that do not match the search criteria
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName('td');
-            
-            // Get values from the relevant columns (assuming username is in column 3, ID User in column 2)
-            var usernameCell = cells[2].textContent.toLowerCase(); // Username column
-            var userIDCell = cells[1].textContent.toLowerCase(); // ID User column
-            
-            // Check if the current row matches the search filters
-            var matchesUsername = usernameCell.includes(username);
-            var matchesUserID = userIDCell.includes(userID);
+</body>
 
-            // Show/hide row based on whether it matches the search input
-            if (matchesUsername && matchesUserID) {
-                rows[i].style.display = ''; // Show the row
-            } else {
-                rows[i].style.display = 'none'; // Hide the row
-            }
-        }
-    }
-</script>
-    
 </html>

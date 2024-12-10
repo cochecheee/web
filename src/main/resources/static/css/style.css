@@ -37,7 +37,7 @@ span {
 }
 
 a {
-	color: #333;
+	color: #e53935; /* Red color for links */
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
@@ -45,8 +45,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #FF4B2B; /* Red border for button */
+	background-color: #FF4B2B; /* Red background */
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -246,10 +246,11 @@ footer i {
 }
 
 footer a {
-    color: #3c97bf;
+    color: #fbc02d; /* Yellow color for footer links */
     text-decoration: none;
 }
-/* track order*/
+
+/* Track Order */
 .order-successful-text {
   font-family: Oswald;
   font-size: 2.25em;
@@ -261,25 +262,27 @@ footer a {
   padding-top: 20px;
   padding-left: 0px;
 }
-.arriving-in-header{
+.arriving-in-header {
   padding-top: 20px;
   padding-left: 0px;
 }
 .main-div {
   background-color: #f5f5f5;
 }
-.track-order-div {
 
-}
+.track-order-div {}
+
 .order-status-div {
     background-color: #ffffff;
     box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
     padding: 5px;
 }
+
 .order-placed-image {
   display: block;
   margin: auto;
 }
+
 .order-status-text {
   text-align:center;
   margin-top: 10px;
@@ -287,8 +290,9 @@ footer a {
   font-size: 2.25em;
   font-weight: bold;
   text-align: center;
-  color: #4cb209;
+  color: #fbc02d; /* Yellow color for order status */
 }
+
 .order-id {
   text-align: center;
   font-family: Lato;
@@ -297,20 +301,24 @@ footer a {
   text-align: center;
   color: #4a4a4a;
 }
+
 .progress-bar {
   width:60%;
   height:1px;
-  background-color: #d55e57;
+  background-color: #d55e57; /* Red color for progress bar */
 }
-.order-received{
+
+.order-received {
   width:50px;
   height:50px;
-      background: url(https://d30mle0t4iy75h.cloudfront.net/website/track-order-status-1.png);
+  background: url(https://d30mle0t4iy75h.cloudfront.net/website/track-order-status-1.png);
 }
+
 .track-process {
     position: relative;
 }
-.customer-details{
+
+.customer-details {
   box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
   padding-left:20px;
   font-family: Lato;
@@ -320,35 +328,41 @@ footer a {
   border-top: solid 1px #979797;
   padding-top: 10px;
 }
-.delivery-text{
+
+.delivery-text {
   font-family: Lato;
   font-size: 17px;
   font-weight: 500;
   color: #000000;
 }
+
 .delivery-address {
   font-family: Lato;
   font-size: 1em;
   color: #4a4a4a;
 }
+
 .consumer-phonenumber {
   font-family: Lato;
   font-size: 1em;
   color: #000000;
- padding-bottom: 10px;
+  padding-bottom: 10px;
 }
-.arriving-in-details{
+
+.arriving-in-details {
   box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
-  background-color:#ffffff;
+  background-color: #ffffff;
 }
 
 .arriving-in-details li {
   border-bottom: solid 1px #979797;
 }
+
 .arriving-in-details ul {
   list-style-type: none;
   padding: 0px;
 }
+
 .delivery-time {
   font-family: Oswald;
   font-size: 1.5em;
@@ -357,34 +371,39 @@ footer a {
   text-align:center;
   padding:5px;
 }
+
 .delivery-boy-num {
    font-family: OpenSans;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
-  color: #cb352b;
+  color: #cb352b; /* Red color for delivery boy number */
   padding: 5px;
 }
+
 .live-tracking-btn {
   font-family: OpenSans;
   font-size: 1.5em;
   font-weight: bold;
-  color: #cb352b;
+  color: #cb352b; /* Red color for live tracking button */
   text-align:center;
   padding: 5px;
 }
-.order-information-header{
+
+.order-information-header {
   font-family: Lato;
   font-size: 1em;
   font-weight: 500;
   color: #000000;
   margin-top: 20px;
 }
+
 .order-information-div {
   box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
   background-color: #ffffff;
 }
-.orderId{
+
+.orderId {
   font-family: Lato;
   font-size: 1em;
   font-weight: bold;
@@ -392,25 +411,30 @@ footer a {
   padding-top:10px;
   padding-left: 15px;
 }
-.ordered-time{
+
+.ordered-time {
    font-family: Lato;
    font-size: 1em;
    color: #4a4a4a;
    padding-top:5px;
    padding-left:15px;
-  padding-bottom: 5px;
+   padding-bottom: 5px;
 }
+
 .item-container-div {
   box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
   background-color: #ffffff;
 }
+
 .item-container-div ul {
   list-style-type: none;
   padding:0px;
 }
+
 .item-container-div li {
   border-bottom:solid 1px #979797;
 }
+
 .item-container-div p {
   font-family: Lato;
   font-size: 1em;
@@ -418,64 +442,60 @@ footer a {
   padding: 0px;
   margin:0px;
 }
+
 .item-container-div quantity {
   font-family: Lato;
   font-size: 0.1em;
   color: #787878;
 }
-.item-list-div{
+
+.item-list-div {
   padding-top:5px;
   padding-left: 15px;
   padding-bottom: 5px;
 }
+
 .combo-item {
   display:block;
   margin-left: 5px;
 }
-.order-status-animation{
-  list-style-type: none;   
+
+.order-status-animation {
+  list-style-type: none;
   padding: 0px;
   width: 100%;
   display: table;
   table-layout: fixed;
 }
+
 .order-status-animation img {
   width: 50px;
 }
-.order-status-animation p{
+
+.order-status-animation p {
   font-family: Lato;
   font-size: 1em;
   margin-top: 10px;
-  color: #ce453b;
+  color: #ce453b; /* Red color for status animation text */
   word-break: break-word;
 }
 
 .order-status-animation li {
-/*   display: inline-block;
-  padding-left: 10%; */
    display: table-cell;
   width: auto;
   text-align: center;
 }
+
 .order-status-animation li:first-child {
   padding-left: 0px;
 }
 
 @media screen and (max-width:640px) {
-  .order-status-animation p{ 
+  .order-status-animation p { 
     font-size: 0.9em;
   }
-}  
+}
+
 .order-status-animation li {
   position: relative;
 }
-
-/* .order-placed:after{
-    position: absolute;
-    left: calc(90% - 60px);
-    top:20px;
-    content: " ";
-    width: 160px;
-    height: 1px;
-    border: solid 1px #cb352b;
-} */

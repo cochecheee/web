@@ -24,6 +24,7 @@ public class Shipper implements Serializable{
 	public String name;
 	public Boolean gender;
 	public Date birth;
+	private String username;
 	
 	@Column(columnDefinition = "nvarchar(100)")
 	public String address;

@@ -5,119 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Home</title>
     <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
+	    /* Global Styles */
+	    body {
+	        font-family: Arial, sans-serif;
+	        background-color: #fff8e1; /* Màu vàng nhạt */
+	        margin: 0;
+	        padding: 20px;
+	        color: #333;
+	    }
+	
+	    h1 {
+	        color: #d32f2f; /* Đỏ đậm */
+	        text-align: center;
+	        margin-bottom: 20px;
+	    }
+	
+	    /* Containers */
+	    .container {
+	        max-width: 800px;
+	        margin: 0 auto;
+	        background: #fff;
+	        padding: 20px;
+	        border-radius: 10px;
+	        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	        margin-bottom: 20px;
+	    }
+	
+	    .container h2 {
+	        text-align: center;
+	        margin-bottom: 20px;
+	        color: #d32f2f; /* Đỏ đậm */
+	    }
+	
+	    .form-row {
+	        display: flex;
+	        justify-content: space-between;
+	        margin-bottom: 15px;
+	    }
+	
+	    .form-row label {
+	        font-weight: bold;
+	        flex: 1;
+	    }
+	
+	    .form-row input, .form-row select {
+	        flex: 2;
+	        padding: 5px;
+	        font-size: 16px;
+	        border: 1px solid #ccc;
+	        border-radius: 5px;
+	        background-color: #f9f9f9;
+	    }
+	
+	    /* Buttons */
+	    .btn-container {
+	        display: flex;
+	        justify-content: space-between;
+	        margin-top: 20px;
+	    }
+	
+	    .btn {
+	        padding: 10px 20px;
+	        font-size: 16px;
+	        font-weight: bold;
+	        text-align: center;
+	        text-decoration: none;
+	        color: #fff;
+	        border-radius: 8px;
+	        background-color: #d32f2f; /* Đỏ đậm */
+	        transition: background-color 0.3s ease, transform 0.2s ease;
+	        border: none;
+	        cursor: pointer;
+	    }
+	
+	    .btn:hover {
+	        background-color: #c62828; /* Đỏ nhạt hơn khi hover */
+	    }
+	
+	    .btn:active {
+	        background-color: #b71c1c; /* Đỏ tối hơn khi click */
+	        transform: scale(0.95);
+	    }
+	
+	    .btn.cancel {
+	        background-color: #f44336; /* Đỏ sáng cho nút Cancel */
+	    }
+	
+	    .btn.cancel:hover {
+	        background-color: #e53935; /* Đỏ đậm hơn khi hover */
+	    }
+	
+	    /* Change the border of the input fields */
+	    .form-row input, .form-row select {
+	        border: 1px solid #d32f2f; /* Đỏ cho viền input */
+	    }
+	
+	    /* Header Styling */
+	    header {
+	        background-color: #d32f2f; /* Đỏ đậm */
+	        color: #fff;
+	        padding: 15px 0;
+	        text-align: center;
+	        font-size: 20px;
+	    }
+	
+	    /* Buttons Style */
+	    .btn-container {
+	        margin-top: 20px;
+	        display: flex;
+	        justify-content: space-between;
+	    }
+	
+	    /* Image preview styling */
+	    #picturePreview {
+	        max-width: 200px;
+	        max-height: 200px;
+	        border-radius: 10px;
+	        display: block;
+	        border: 4px solid #d32f2f; /* Đặt viền đỏ cho ảnh */
+	    }
+	    
+	    /* Align the profile picture and button consistently with other inputs */
+		.form-row {
+		    display: flex;
+		    justify-content: space-between;
+		    margin-bottom: 15px;
+		    align-items: center; /* Vertically align the items */
+		}
+		
+		.form-row label {
+		    font-weight: bold;
+		    flex: 1;
+		}
+		
+		.form-row input, .form-row select, .form-row img {
+		    flex: 2;
+		    padding: 5px;
+		    font-size: 16px;
+		    border: 1px solid #d32f2f; /* Red border */
+		    border-radius: 5px;
+		    background-color: #f9f9f9;
+		}
+		
+		.form-row img {
+		    max-width: 100%; /* Make sure the image doesn't overflow */
+		    height: auto;    /* Maintain aspect ratio */
+		    border: 4px solid #d32f2f; /* Red border for the image */
+		    border-radius: 10px;
+		    margin-right: 10px; /* Add space between image and button */
+		}
+		
+		#changePictureBtn {
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    color: #fff;
+		    background-color: #d32f2f; /* Red button */
+		    border-radius: 8px;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		    border: none;
+		    cursor: pointer;
+		}
+		
+		#changePictureBtn:hover {
+		    background-color: #c62828; /* Darker red on hover */
+		}
+		
+		#changePictureBtn:active {
+		    background-color: #b71c1c; /* Darkest red on active */
+		    transform: scale(0.95); /* Slightly shrink the button on click */
+		}
+	    
+	</style>
 
-        h1 {
-            color: #007bff;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Containers */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #007bff;
-        }
-
-        .form-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .form-row label {
-            font-weight: bold;
-            flex: 1;
-        }
-
-        .form-row input, .form-row select {
-            flex: 2;
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            border-radius: 8px;
-            background-color: #007bff;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .btn:active {
-            background-color: #004085;
-            transform: scale(0.95);
-        }
-
-        .btn.cancel {
-            background-color: #dc3545;
-        }
-
-        .btn.cancel:hover {
-            background-color: #c82333;
-        }
-    </style>
 </head>
 <body>
+	<!-- HEADER  -->
     <h1>Customer Home</h1>
 
     <!-- Customer Information Section -->
     <div class="container">
         <h2>Customer Information</h2>
-        <form id="customerForm">
+        <form id="customerForm" enctype="multipart/form-data" action="#" method="post">
             <div class="form-row">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="John Doe" readonly />
+                <input type="text" id="name" name="name" th:value="${customer.name}" readonly />
             </div>
             <div class="form-row">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="johndoe@example.com" readonly />
+                <input type="email" id="email" name="email" th:value="${customer.email}" readonly />
             </div>
             <div class="form-row">
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" value="123-456-7890" readonly />
+                <input type="tel" id="phone" name="phone" th:value="${customer.phone}" readonly />
             </div>
             <div class="form-row">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="123 Main Street" readonly />
+                <input type="text" id="address" name="address" th:value="${customer.address}" readonly />
+            </div>
+            <div class="form-row">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" th:value="${customer.address}" readonly />
+            </div>
+            <div class="form-row">
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="address" th:value="${customer.address}" readonly />
+            </div>
+
+            <!-- Picture -->
+            <div class="form-row">
+                <label for="picture">Picture:</label>
+                <input type="file" id="picture" name="picture" accept="image/*" style="display: none;" />
+                <img id="picturePreview" th:src="@{/image/{fname}(fname=${customer.picture})}" alt="Profile Picture" style="max-width: 200px; max-height: 200px; border-radius: 10px; display: block;" />
+                <button type="button" id="changePictureBtn" class="btn">Change Picture</button>
             </div>
 
             <!-- Buttons -->
@@ -167,6 +267,9 @@
         const saveBtn = document.getElementById('saveBtn');
         const cancelBtn = document.getElementById('cancelBtn');
         const customerInputs = document.querySelectorAll('#customerForm input');
+        const picturePreview = document.getElementById('picturePreview');
+        const changePictureBtn = document.getElementById('changePictureBtn');
+        const pictureInput = document.getElementById('picture');
 
         editBtn.addEventListener('click', () => {
             customerInputs.forEach(input => input.removeAttribute('readonly'));
@@ -182,9 +285,26 @@
             cancelBtn.style.display = 'none';
         });
 
+        // Handle picture change
+        changePictureBtn.addEventListener('click', () => {
+            pictureInput.click();
+        });
+
+        pictureInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    picturePreview.src = event.target.result;
+                    picturePreview.style.display = 'block';  // Ensure the image is displayed
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('customerForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Customer information updated successfully!');
+            // Save customer data (add your own save logic here)
             customerInputs.forEach(input => input.setAttribute('readonly', true));
             editBtn.style.display = 'inline-block';
             saveBtn.style.display = 'none';
@@ -194,9 +314,11 @@
         // Place Order Form Submission
         document.getElementById('orderForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Order placed successfully!');
+            // alert('Order placed successfully!');
             document.getElementById('orderForm').reset();
         });
     </script>
+    
+    <!-- FOOTER -->
 </body>
 </html>
