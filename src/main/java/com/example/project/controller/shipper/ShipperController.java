@@ -13,7 +13,6 @@ import org.springframework.ui.ModelMap;
 
 import com.example.project.entity.Order;
 import com.example.project.entity.Shipper;
-import com.example.project.model.ShipperModel;
 import com.example.project.service.impl.OrderServiceImpl;
 import com.example.project.service.impl.ShipperServiceImpl;
 import com.example.project.utils.ConstantUtil;
@@ -106,6 +105,8 @@ public class ShipperController {
 		shipper.setGender(gender);
 		shipper.setCccd(cccd);
 		shipper.setBirth(birth);
+		shipper.setManager(oldShipper.getManager());
+		shipper.setPost(oldShipper.getPost());
 		
 		
 		// Hình cũ
@@ -159,139 +160,10 @@ public class ShipperController {
 			shipperService.save(shipper); // Lưu shipper
 		}else {
 			model.addAttribute("errorMessage", "Mật khẩu cũ không chính xác. Vui lòng thử lại!");
+			model.addAttribute("shipper",shipper);
 		    return "views/shipper/editProfile";
 		}
 		return "redirect:/shipper/profile/" + IDShipper;
 
 	}
-
-	/**
-	 * @PostMapping("/shipper/profile/update/{id}") public String
-	 * updateProfile(@PathVariable("id") String shipperID, ModelMap model,
-	 * HttpServletRequest req,
-	 * 
-	 * @RequestParam("name") String name,
-	 * 
-	 * @RequestParam("phone") String phone,
-	 * 
-	 * @RequestParam("address") String address,
-	 * 
-	 * @RequestParam("city") String city,
-	 * 
-	 * @RequestParam("statusShipper") Boolean statusShipper,
-	 * 
-	 * @RequestParam("oldPassword") String oldPassword,
-	 * 
-	 * @RequestParam(value = "newPassword", required = false) String newPassword)
-	 *                     throws IOException {
-	 * 
-	 *                     // Lấy thông tin Shipper từ cơ sở dữ liệu Shipper shipper
-	 *                     = shipperService.findByID(shipperID) .orElseThrow(() ->
-	 *                     new RuntimeException("Shipper not found with ID: " +
-	 *                     shipperID));
-	 * 
-	 *                     // Kiểm tra mật khẩu cũ if
-	 *                     (!shipper.getPassword().equals(oldPassword)) { throw new
-	 *                     RuntimeException("Current password is incorrect"); }
-	 * 
-	 *                     // Nếu có mật khẩu mới, cập nhật if (newPassword != null
-	 *                     && !newPassword.isEmpty()) {
-	 *                     shipper.setPassword(newPassword); }
-	 * 
-	 *                     // Các thông tin khác shipper.setName(name);
-	 *                     shipper.setPhone(phone); shipper.setAddress(address);
-	 *                     shipper.setCity(city);
-	 *                     shipper.setStatusShipper(statusShipper);
-	 * 
-	 *                     // Xử lý ảnh đại diện (giống phần code trước) if
-	 *                     (!newPicture.isEmpty()) { // Tìm shipper cũ Shipper
-	 *                     oldShipper = shipperService.findByID(shipperID)
-	 *                     .orElseThrow(() -> new RuntimeException("Shipper not
-	 *                     found with ID: " + shipperID));
-	 * 
-	 *                     // Hình cũ String fileOld = oldShipper.getPicture();
-	 * 
-	 *                     // Link từ request String images =
-	 *                     req.getParameter("images");
-	 * 
-	 *                     // Xử lý ảnh String fname = ""; String uploadPath =
-	 *                     ConstantUtil.UPLOAD_PATH; File uploadDir = new
-	 *                     File(uploadPath); if (!uploadDir.exists()) {
-	 *                     uploadDir.mkdir(); }
-	 * 
-	 *                     try { Part part = req.getPart("images1"); if
-	 *                     (part.getSize() > 0) { String filename =
-	 *                     Paths.get(part.getSubmittedFileName()).getFileName().toString();
-	 *                     String ext = filename.substring(filename.lastIndexOf(".")
-	 *                     + 1); fname = System.currentTimeMillis() + "." + ext;
-	 *                     part.write(uploadPath + "/" + fname);
-	 *                     oldShipper.setPicture(fname); } else if (images != null)
-	 *                     { oldShipper.setPicture(images); } else {
-	 *                     oldShipper.setPicture(fileOld != null ? fileOld :
-	 *                     "avatar.jpg"); } } catch (Exception e) {
-	 *                     e.printStackTrace(); }
-	 * 
-	 *                     // Lưu thông tin Shipper đã cập nhật
-	 *                     shipperService.editProfile(shipper);
-	 * 
-	 *                     return "redirect:/shipper/profile/" + shipperID; }
-	 * 
-	 ***/
-
-	/**
-	 * @PostMapping("/shipper/profile/update/{id}") public String
-	 * updateProfile(@PathVariable("id") String shipperID, ModelMap model,
-	 * HttpServletRequest req, @ModelAttribute("shipper") Shipper
-	 * shipper, @RequestParam("oldPassword") String oldPassword,
-	 * 
-	 * @RequestParam(required = false) String newPassword) throws IOException {
-	 * 
-	 *                        // Tìm shipper cũ Shipper oldShipper =
-	 *                        shipperService.findByID(shipperID) .orElseThrow(() ->
-	 *                        new RuntimeException("Shipper not found with ID: " +
-	 *                        shipperID));
-	 * 
-	 *                        // Hình cũ String fileOld = oldShipper.getPicture();
-	 * 
-	 *                        // Link từ request String images =
-	 *                        req.getParameter("images");
-	 * 
-	 *                        // Xử lý ảnh String fname = ""; String uploadPath =
-	 *                        ConstantUtil.UPLOAD_PATH; File uploadDir = new
-	 *                        File(uploadPath); if (!uploadDir.exists()) {
-	 *                        uploadDir.mkdir(); }
-	 * 
-	 *                        try { Part part = req.getPart("images1"); if
-	 *                        (part.getSize() > 0) { String filename =
-	 *                        Paths.get(part.getSubmittedFileName()).getFileName().toString();
-	 *                        String ext =
-	 *                        filename.substring(filename.lastIndexOf(".") + 1);
-	 *                        fname = System.currentTimeMillis() + "." + ext;
-	 *                        part.write(uploadPath + "/" + fname);
-	 *                        oldShipper.setPicture(fname); } else if (images !=
-	 *                        null) { oldShipper.setPicture(images); } else {
-	 *                        oldShipper.setPicture(fileOld != null ? fileOld :
-	 *                        "avatar.jpg"); } } catch (Exception e) {
-	 *                        e.printStackTrace(); }
-	 * 
-	 *                        // Kiểm tra mật khẩu cũ if
-	 *                        (!oldPassword.equals(oldShipper.getPassword())) {
-	 *                        throw new RuntimeException("Current password is
-	 *                        incorrect"); }
-	 * 
-	 *                        // Nếu có mật khẩu mới, cập nhật if (newPassword !=
-	 *                        null && !newPassword.isEmpty()) {
-	 *                        oldShipper.setPassword(newPassword); }
-	 * 
-	 *                        // Các thông tin khác
-	 *                        oldShipper.setName(shipper.name);
-	 *                        oldShipper.setPhone(shipper.phone);
-	 *                        oldShipper.setAddress(shipper.address);
-	 *                        oldShipper.setCity(shipper.city);
-	 *                        oldShipper.setStatusShipper(shipper.statusShipper);
-	 * 
-	 *                        shipperService.save(oldShipper);
-	 * 
-	 *                        return "redirect:/shipper/profile/" + shipperID; }
-	 ***/
 }

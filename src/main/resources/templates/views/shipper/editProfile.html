@@ -12,10 +12,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <h5 class="card-title text-primary">Edit Shipper Profile</h5>
-                <form th:action="@{/shipper/profile/update/{id}(id=${shipper.IDShipper})}" method="POST" enctype="multipart/form-data">
-                    <!-- Hidden ID -->
-                    <input type="hidden" name="IDShipper" th:value="${shipper.IDShipper}">
-                    
+                <form th:action="@{/shipper/profile/update/{id}(id=${shipper.IDShipper})}" method="POST" enctype="multipart/form-data">       
                     <div th:if="${errorMessage}" 
 					     style="color: red; font-weight: bold; text-align: center; margin: 10px;">
 					    <p th:text="${errorMessage}"></p>

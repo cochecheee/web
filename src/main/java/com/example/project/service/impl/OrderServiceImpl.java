@@ -33,7 +33,6 @@ public class OrderServiceImpl implements IOrderService{
 		return orderRepository.save(entity);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public List<Order> findByIdShipperAndStatus(String IDShipper, Integer status) {
 		return orderRepository.findByShipper_IDShipperAndStatus(IDShipper, status);
@@ -48,10 +47,11 @@ public class OrderServiceImpl implements IOrderService{
 	public Long countByIdShipperAndStatus(String IDShipper, Integer status) {
 		// TODO Auto-generated method stub
 		return orderRepository.countByShipper_IDShipperAndStatus(IDShipper, status);
-=======
+	}
+
 	public List<Order> filterOrderByPostID(String postID) {
 		return orderRepository.filterOrderByPostID(postID);
->>>>>>> main
+
 	}
 
 	
