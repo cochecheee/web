@@ -35,7 +35,6 @@ public class OrderServiceImpl implements IOrderService{
 	}
 
 	@Override
-
 	public List<Order> findByIdShipperAndStatus(String IDShipper, Integer status) {
 		return orderRepository.findByShipper_IDShipperAndStatus(IDShipper, status);
 	}

@@ -13,7 +13,8 @@ import com.example.project.entity.Order;
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, String>{
 	// Tìm danh sách Order theo Shipper ID và Status
-    List<Order> findByShipper_IDShipperAndStatus(String shipperId, Integer status);
+	@Query("SELECT o FROM Order o WHERE o.shipper.IDShipper = :shipperId AND o.status = :status")
+    List<Order> findByShipper_IDShipperAndStatus(@Param("shipperId") String shipperId, @Param("status") Integer status);
     
     // Tìm danh sách Order theo Shipper ID
     List<Order> findByShipper_IDShipper(String shipperId);

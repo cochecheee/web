@@ -44,12 +44,6 @@ public class ShipperServiceImpl implements IShipperService {
 		shipperRepository.deleteById(id);
 	}
 
-//	@Override
-//	public List<Order> findAllOrder(String IDShipper) {
-//		// TODO Auto-generated method stub
-//		return orderRepository.findByShipper_IDShipper(IDShipper) ;
-//	}
-
 
 	@Override
 	public List<Order> findAllOrder(String IDShipper) {
@@ -75,12 +69,6 @@ public class ShipperServiceImpl implements IShipperService {
 		return shipperRepository.findByPost_IDPost(IDPost);
 	}
 
-
-//	@Override
-//	public List<Order> findAllOrderBystatus(String IDShipper, Integer status) {
-//		return orderRepository.findByShipper_IDShipperAndStatus(IDShipper, status);
-//	}
-
 	@Override
 	public List<Order> findAllOrderBystatus(String IDShipper, Integer status) {
 		return orderRepository.findByShipper_IDShipperAndStatus(IDShipper, status);
@@ -92,24 +80,6 @@ public class ShipperServiceImpl implements IShipperService {
 		// TODO Auto-generated method stub
 		return orderRepository.findById(IDOrder);
 	}
-
-//	@Override
-//	public int StarRateShipper(String IDShipper) {
-//		List<Rate> rates = rateRepository.findByShipper_IDShipper(IDShipper);
-//		
-//		// Kiểm tra nếu danh sách trống
-//	    if (rates.isEmpty()) {
-//	        return 0; // Không có đánh giá nào
-//	    }
-//	    
-//	 // Tính trung bình cộng của thuộc tính 'star'
-//	    double average = rates.stream()
-//	                          .mapToInt(Rate::getStar) // Lấy giá trị star
-//	                          .average() // Tính trung bình cộng
-//	                          .orElse(0.0); // Giá trị mặc định nếu không có phần tử nào
-//	    
-//	    return (int) Math.round(average); // Trả về trung bình cộng làm tròn
-//	}
 
 	@Override
 	public int StarRateShipper(String IDShipper) {
@@ -132,7 +102,6 @@ public class ShipperServiceImpl implements IShipperService {
 
 	public void save(Shipper shipper) {
 		shipperRepository.save(shipper);
-		
 	}
 
 
