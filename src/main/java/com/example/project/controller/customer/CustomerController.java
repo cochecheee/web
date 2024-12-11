@@ -25,7 +25,6 @@ import com.example.project.service.impl.PostOfficeServiceImpl;
 import com.example.project.service.impl.TransportTypeServiceImpl;
 import com.example.project.utils.ConstantUtil;
 
-import jakarta.persistence.Column;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 
@@ -114,10 +113,11 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/placeOrder")
-	public String placeOrder(ModelAttribute orderDTO)
+	public String placeOrder(@ModelAttribute("orderDTO") OrderDTO orderDTO, 
+														ModelMap model)
 	{
 		
-		return "";
+		return "views/customer/paymentDetails";
 	}
 	
 	@GetMapping("/cancleOrder")

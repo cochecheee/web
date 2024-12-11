@@ -216,32 +216,30 @@
 
 <!-- Action  -->
    <script>
-    // Function to search and filter table rows
+	    // Function to search and filter table rows
 	    function searchCustomers() {
+	        // Get search values and convert to lowercase for case-insensitive search
 	        var username = document.getElementById('searchUsername').value.toLowerCase();
 	        var shipperID = document.getElementById('searchID').value.toLowerCase();
 	
-	        // Get all table rows
-	        var rows = document.getElementById('customerTable').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+	        // Get all rows from the table body
+	        var rows = document.querySelectorAll('#customerTable tbody tr');
 	
-	        for (var i = 0; i < rows.length; i++) {
-	            var cells = rows[i].getElementsByTagName('td');
+	        rows.forEach(function (row) {
+	            // Get the cells for username and shipper ID
+	            var usernameCell = row.cells[8]?.textContent.trim().toLowerCase(); // Index for Username
+	            var shipperIDCell = row.cells[1]?.textContent.trim().toLowerCase(); // Index for Shipper ID
 	
-	            // Ensure cells array exists and has the expected length
-	            if (cells.length >= 10) {
-	                var usernameCell = cells[8].textContent.trim().toLowerCase(); // Adjust index for Username
-	                var shipperIDCell = cells[1].textContent.trim().toLowerCase(); // Adjust index for ID Shipper
+	            // Match conditions
+	            var matchesUsername = !username || (usernameCell && usernameCell.includes(username));
+	            var matchesShipperID = !shipperID || (shipperIDCell && shipperIDCell.includes(shipperID));
 	
-	                // Match conditions
-	                var matchesUsername = username === '' || usernameCell.includes(username);
-	                var matchesShipperID = shipperID === '' || shipperIDCell.includes(shipperID);
-	
-	                // Show/Hide rows based on match
-	                rows[i].style.display = matchesUsername && matchesShipperID ? '' : 'none';
-	            }
-	        }
+	            // Show row if both conditions are true, otherwise hide it
+	            row.style.display = matchesUsername && matchesShipperID ? '' : 'none';
+	        });
 	    }
 	</script>
+
 	
 	<!-- FOOTER  -->
 

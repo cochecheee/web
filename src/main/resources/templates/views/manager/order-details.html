@@ -1,60 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+<head>
+    <style>
+        /* Container styling */
+        .container1 {
+            max-width: 90%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #d72638; /* Red tone */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        thead tr {
+            background-color: #fcbf49; /* Yellow tone */
+            color: #000;
+        }
+
+        th, td {
+            border: 1px solid #d72638; /* Red tone for borders */
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light background for even rows */
+        }
+
+        tbody tr:hover {
+            background-color: #ffe5b4; /* Light yellow on hover */
+        }
+
+        a {
+            color: #d72638; /* Red tone for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
  <!-- Order -->
     <div class="container1">
     <h1>Order List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Ship Fee</th>
-                <th>COD Fee</th>
-                <th>Source</th>
-                <th>Source City</th>
-                <th>Destination</th>
-                <th>Destination City</th>
-                <th>Width</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Order Date</th>
-                <th>Status</th>
-                <th>Goods</th>
-                <th>Transport</th>
-                <th>User</th>
-                <th>Voucher</th>
-                <th>Shipper</th>
-                <th>Post Office</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="order : ${orders}">
-                <td th:text="${order.IDOrder}"></td>
-                <td th:text="${order.shipFee}"></td>
-                <td th:text="${order.codFee}"></td>
-                <td th:text="${order.source}"></td>
-                <td th:text="${order.sourceCity}"></td>
-                <td th:text="${order.dest}"></td>
-                <td th:text="${order.destCity}"></td>
-                <td th:text="${order.width}"></td>
-                <td th:text="${order.height}"></td>
-                <td th:text="${order.weigth}"></td>
-                <td th:text="${order.orderDate}"></td>
-                <td th:text="${order.status}"></td>
-                <td th:text="${order.good.GoodsType}"></td>
-                <td th:text="${order.transport.TransportType}"></td>
-                <td th:text="${order.user.name}"></td>
-                <td th:text="${order.voucher.IDVoucher}"></td>
-                <td th:text="${order.shipper.name}"></td>
-                <td th:text="${order.postOffice.namePost}"></td>
-                <td>
-                    <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder}, managerID=${managerID})}">Edit</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+	    <table>
+	    <thead>
+	        <tr>
+	            <th>ID</th>
+	            <th>Ship Fee</th>
+	            <th>COD Fee</th>
+	            <th>Source</th>
+	            <th>Source City</th>
+	            <th>Destination</th>
+	            <th>Destination City</th>
+	            <th>Width</th>
+	            <th>Height</th>
+	            <th>Weight</th>
+	            <th>Order Date</th>
+	            <th>Status</th>
+	            <th>Goods</th>
+	            <th>Transport</th>
+	            <th>User</th>
+	            <th>Voucher</th>
+	            <th>Shipper</th>
+	            <th>Post Office</th>
+	            <th>Actions</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="order : ${orders}">
+	            <td th:text="${order.IDOrder != null ? order.IDOrder : 'N/A'}"></td>
+	            <td th:text="${order.shipFee != null ? order.shipFee : 'N/A'}"></td>
+	            <td th:text="${order.codFee != null ? order.codFee : 'N/A'}"></td>
+	            <td th:text="${order.source != null ? order.source : 'N/A'}"></td>
+	            <td th:text="${order.sourceCity != null ? order.sourceCity : 'N/A'}"></td>
+	            <td th:text="${order.dest != null ? order.dest : 'N/A'}"></td>
+	            <td th:text="${order.destCity != null ? order.destCity : 'N/A'}"></td>
+	            <td th:text="${order.width != null ? order.width : 'N/A'}"></td>
+	            <td th:text="${order.height != null ? order.height : 'N/A'}"></td>
+	            <td th:text="${order.weigth != null ? order.weigth : 'N/A'}"></td>
+	            <td th:text="${order.orderDate != null ? order.orderDate : 'N/A'}"></td>
+	            <td th:text="${order.status != null ? order.status : 'N/A'}"></td>
+	            <td th:text="${order.good != null && order.good.GoodsType != null ? order.good.GoodsType : 'N/A'}"></td>
+	            <td th:text="${order.transport != null && order.transport.TransportType != null ? order.transport.TransportType : 'N/A'}"></td>
+	            <td th:text="${order.user != null && order.user.name != null ? order.user.name : 'N/A'}"></td>
+	            <td th:text="${order.voucher != null && order.voucher.IDVoucher != null ? order.voucher.IDVoucher : 'N/A'}"></td>
+	            <td th:text="${order.shipper != null && order.shipper.name != null ? order.shipper.name : 'N/A'}"></td>
+	            <td th:text="${order.postOffice != null && order.postOffice.namePost != null ? order.postOffice.namePost : 'N/A'}"></td>
+	            <td>
+	                <a th:href="@{/manager/order/edit/{id}(id=${order.IDOrder != null ? order.IDOrder : 0}, managerID=${managerID})}">Edit</a>
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+
     
 </div>
+</body>
 </html>

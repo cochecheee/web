@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+
 <form th:action="@{/manager/customer/edit/{id}(id=${customer.IDUser},managerID=${managerID})}" method="post" enctype="multipart/form-data">
 
     <!-- Customer ID: Được điền tự động từ đối tượng customer -->

@@ -3,6 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+ 	<link rel="stylesheet" th:href="@{/css/managerHeader.css}">
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
 	<!-- Styles -->
 	<style>
 	    /* Tổng thể bảng */
@@ -147,7 +149,7 @@
 
 <body>
 	<!-- HEADER  -->
-	
+	<header th:replace="~{views/manager/fragments/header::header}"></header>
 	
 	<!-- Search Form -->
 	<form id="searchForm" onsubmit="return false;">
@@ -246,5 +248,6 @@
 	</script>
 	
 	<!-- FOOTER  -->
+	<!-- <footer th:replace="~{views/fragment/footer::footer}"></footer> -->
 </body>
 </html>
