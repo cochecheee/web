@@ -15,4 +15,11 @@ public interface IOrderService {
 
 	<S extends Order> S save(S entity);
 
+
+	List<Order> findByIdShipperAndStatus(String IDShipper, Integer status);
+
+	List<Order> findByIdShipper(String IDShipper);
+	
+	Long countByIdShipperAndStatus(String IDShipper, Integer status);
+
 }

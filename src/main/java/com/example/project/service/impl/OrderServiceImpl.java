@@ -35,8 +35,25 @@ public class OrderServiceImpl implements IOrderService{
 	}
 
 	@Override
+
+	public List<Order> findByIdShipperAndStatus(String IDShipper, Integer status) {
+		return orderRepository.findByShipper_IDShipperAndStatus(IDShipper, status);
+	}
+
+	@Override
+	public List<Order> findByIdShipper(String IDShipper) {
+		return orderRepository.findByShipper_IDShipper(IDShipper);
+	}
+
+	@Override
+	public Long countByIdShipperAndStatus(String IDShipper, Integer status) {
+		// TODO Auto-generated method stub
+		return orderRepository.countByShipper_IDShipperAndStatus(IDShipper, status);
+	}
+
 	public List<Order> filterOrderByPostID(String postID) {
 		return orderRepository.filterOrderByPostID(postID);
+
 	}
 
 	
