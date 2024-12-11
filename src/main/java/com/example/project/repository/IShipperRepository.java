@@ -1,15 +1,9 @@
 package com.example.project.repository;
 
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
 import com.example.project.entity.Shipper;
-
 import org.springframework.stereotype.Repository;
-
-
 
 @Repository
 public interface IShipperRepository extends JpaRepository<Shipper, String> {

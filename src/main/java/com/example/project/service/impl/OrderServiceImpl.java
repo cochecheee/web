@@ -47,7 +47,6 @@ public class OrderServiceImpl implements IOrderService{
 
 	@Override
 	public Long countByIdShipperAndStatus(String IDShipper, Integer status) {
-		// TODO Auto-generated method stub
 		return orderRepository.countByShipper_IDShipperAndStatus(IDShipper, status);
 	}
 
